@@ -482,6 +482,16 @@ function mouseDragged() {
   	} 	  	
 }
 
+function mouseWheel(event) { 
+	if(mouseIsPressed){
+		if(menuState === "bedroom"){
+			for(var i =0; i < objects.bedroom.length; i++){
+				objects.bedroom[i].rotate();
+			}
+		}
+	}
+}
+
 //pushing new rooms to object array
 function generateRoom(width, length){
 	var width = width;
@@ -492,7 +502,7 @@ function generateRoom(width, length){
 			horizontalWalls.push(new Horizontalwall(i, 0, "bedroom", 0, 0, width, length));
 			horizontalWalls.push(new Horizontalwall(i, length, "bedroom", 0, 0, width, length));
 		}
-		for(var i = 0; i < width; i+= 10){
+		for(var i = 0; i < length; i+= 10){
 			verticalWalls.push(new Verticalwall(0, i, "bedroom", 0, 0, width, length));
 			verticalWalls.push(new Verticalwall(width, i, "bedroom", 0, 0, width, length));
 		}
@@ -504,7 +514,7 @@ function generateRoom(width, length){
 			horizontalWalls.push(new Horizontalwall(i, 0, "bathroom", 0, 0, width, length));
 			horizontalWalls.push(new Horizontalwall(i, length, "bathroom", 0, 0, width, length));
 		}
-		for(var i = 0; i < width; i+= 10){
+		for(var i = 0; i < length; i+= 10){
 			verticalWalls.push(new Verticalwall(0, i, "bathroom", 0, 0, width, length));
 			verticalWalls.push(new Verticalwall(width, i, "bathroom", 0, 0, width, length));
 		}
@@ -519,7 +529,7 @@ function generateRoom(width, length){
 			horizontalWalls.push(new Horizontalwall(i, 0, "kitchen", 0, 0, width, length));
 			horizontalWalls.push(new Horizontalwall(i, length, "kitchen", 0, 0, width, length));
 		}
-		for(var i = 0; i < width; i+= 10){
+		for(var i = 0; i < length; i+= 10){
 			verticalWalls.push(new Verticalwall(0, i, "kitchen", 0, 0, width, length));
 			verticalWalls.push(new Verticalwall(width, i, "kitchen", 0, 0, width, length));
 		}
@@ -532,7 +542,7 @@ function generateRoom(width, length){
 			horizontalWalls.push(new Horizontalwall(i, 0, "livingroom", 0, 0, width, length));
 			horizontalWalls.push(new Horizontalwall(i, length, "livingroom", 0, 0, width, length));
 		}
-		for(var i = 0; i < width; i+= 10){
+		for(var i = 0; i < length; i+= 10){
 			verticalWalls.push(new Verticalwall(0, i, "livingroom", 0, 0, width, length));
 			verticalWalls.push(new Verticalwall(width, i, "livingroom", 0, 0, width, length));
 		}
