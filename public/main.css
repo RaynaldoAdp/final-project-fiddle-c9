@@ -1,0 +1,32 @@
+*{
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+.infoPanel{
+	position: absolute;
+	right: 0;
+	top: 0;
+	background-color: green;
+	height:50vh;
+	width: 30vw;
+}
+
+.menuPanel{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	background-color: red;
+	height:50vh;
+	width: 30vw;
+}
+
+button{
+	display:block;
+}
+
+canvas{
+	margin: 5px;
+}
