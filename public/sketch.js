@@ -489,6 +489,21 @@ function mouseWheel(event) {
 				objects.bedroom[i].rotate();
 			}
 		}
+		if(menuState === "bathroom"){
+			for(var i =0; i < objects.bathroom.length; i++){
+				objects.bathroom[i].rotate();
+			}
+		}
+		if(menuState === "livingroom"){
+			for(var i =0; i < objects.livingroom.length; i++){
+				objects.livingroom[i].rotate();
+			}
+		}	
+		if(menuState === "kitchen"){
+			for(var i =0; i < objects.kitchen.length; i++){
+				objects.kitchen[i].rotate();
+			}
+		}
 	}
 }
 

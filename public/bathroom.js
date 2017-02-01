@@ -6,6 +6,16 @@ var Bathroom = function(x, y, width, length){
 	this.length = length || 100;
 	this.rotation = 0;
 	this.alpha = 175;
+	
+	//all for rotation purposes
+	this.centerX = this.x + (this.width/2);
+	this.centerY = this.y + (this.length/2);
+	this.endX = this.x + this.width;
+	this.endY = this.y + this.length;
+	this.rectW = 30;
+	this.rectH = 10;
+	this.arcW = 20;
+	this.arcH = 50;
 }
 
 Bathroom.prototype.show = function(){
@@ -13,28 +23,29 @@ Bathroom.prototype.show = function(){
 	fill(255, 255, 255, this.alpha);
 	rect(this.x, this.y, this.width, this.length);
 	stroke(0);
-	arc(this.x + (this.width/2), this.y + 10, 20, 50, 0, PI);
-	rect(this.x + (this.width/2) - 15, this.y, 30 , 10);
+		
+	if(this.rotation === 0){
+		arc(this.centerX, this.y + 10, this.arcW, this.arcH, 0, PI);
+		rect(this.centerX - this.rectW/2, this.y, this.rectW , this.rectH);
+	}
+	else if(this.rotation === 90){
+		arc(this.endX - this.rectW, this.centerY, this.arcW, this.arcH, PI/2, 3*PI/2);
+		rect(this.endX - this.rectW, this.centerY - (this.rectH/2), this.rectW , this.rectH);
+	}
+	else if(this.rotation === 180){
+		arc(this.centerX, this.endY - this.rectH, this.arcW, this.arcH, PI, 2*PI);
+		rect(this.centerX - this.rectW/2, this.endY - this.rectH, this.rectW , this.rectH);
+	}
+	else if(this.rotation === 270){
+		arc(this.x + this.rectW, this.centerY, this.arcW, this.arcH, 3*PI/2, PI/2);
+		rect(this.x, this.centerY-(this.rectH/2), this.rectW , this.rectH);
+	}	
+	
 	pop();
 }
 
-Bathroom.prototype.condition = function(){
-	if(this.rotation === 0){
-		return mouseX - this.x > 0 && mouseX - this.x < this.width && mouseY - this.y > 0 && mouseY - this.y < this.length;
-	}
-	else if(this.rotation === 90){
-		return mouseX - this.x < 0 && mouseX - this.x > this.width && mouseY - this.y > 0 && mouseY - this.y < this.length;
-	}
-	else if(this.rotation === 180){
-		return mouseX - this.x < 0 && mouseX - this.x > this.width && mouseY - this.y < 0 && mouseY - this.y > this.length;
-	}
-	else if(this.rotation === 270){
-		return mouseX - this.x > 0 && mouseX - this.x < this.width && mouseY - this.y < 0 && mouseY - this.y > this.length;
-	}
-}
-
 Bathroom.prototype.clicked = function(){
-		if(this.condition()){
+		if(mouseX - this.x > 0 && mouseX - this.x < this.width && mouseY - this.y > 0 && mouseY - this.y < this.length){
 			
 			if(mouseX - pmouseX > 5){
 				this.x +=10;
@@ -131,10 +142,14 @@ Bathroom.prototype.clicked = function(){
 				this.y -= 10;
 			}
 		}
+	this.centerX = this.x + (this.width/2);
+	this.centerY = this.y + (this.length/2);
+	this.endX = this.x + this.width;
+	this.endY = this.y + this.length;
 }
 
 Bathroom.prototype.cursor = function(){
-	if(this.condition()){
+	if(mouseX - this.x > 0 && mouseX - this.x < this.width && mouseY - this.y > 0 && mouseY - this.y < this.length){
 		cursor(MOVE);
 	}
 	else{
@@ -143,13 +158,16 @@ Bathroom.prototype.cursor = function(){
 }
 
 Bathroom.prototype.rotate = function(){
-	var store = this.width;
-	this.width = this.length * -1;
-	this.length = store;
-
+	var store1 = this.rectW;
+	this.rectW = this.rectH;
+	this.rectH = store1;
+	
+	var store2 = this.arcW;
+	this.arcW = this.arcH;
+	this.arcH = store2;
+	
 	this.rotation += 90;
 	if(this.rotation === 360){
 		this.rotation = 0;
 	}
-	console.log(this.x, this.y, this.width, this.length);
 }

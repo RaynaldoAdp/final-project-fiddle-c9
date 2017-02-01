@@ -10,8 +10,12 @@ var Terrace = function(x, y, width, length){
 
 Terrace.prototype.show = function(){
 	push();
-	fill(255, 255, 0, this.alpha);
+	fill(255, 255, 255, this.alpha);
 	rect(this.x, this.y, this.width, this.length);
+	stroke(0);
+	for(var i =0; i < this.length; i += 20){
+		line(this.x, this.y + i, this.x + this.width, this.y + i)
+	}
 	pop();
 }
 

@@ -6,32 +6,49 @@ var Kitchen = function(x, y, width, length){
 	this.length = length || 100;
 	this.rotation = 0;
 	this.alpha = 175;
+	
+	//all for rotation purposes
+	this.centerX = this.x + (this.width/2);
+	this.centerY = this.y + (this.length/2);
+	this.endX = this.x + this.width;
+	this.endY = this.y + this.length;
+	this.rectW = 50;
+	this.rectH = 20;
+	this.ellR = 10;
 }
 
 Kitchen.prototype.show = function(){
 	push();
-	fill(188, 198, 204,this.alpha);
+	fill(255, 255, 255,this.alpha);
 	rect(this.x, this.y, this.width, this.length);
+	
+	if(this.rotation === 0){
+		rect(this.centerX-(this.rectW/2), this.y, this.rectW, this.rectH);
+		ellipse(this.centerX - (this.rectW/4), this.y + (this.rectH/2), this.ellR, this.ellR);
+		ellipse(this.centerX, this.y + (this.rectH/2), this.ellR, this.ellR);
+	}
+	else if(this.rotation === 90){
+		rect(this.endX - this.rectW, this.centerY - (this.rectH/2), this.rectW, this.rectH);
+		ellipse(this.endX - (this.rectW/2), this.centerY +(this.rectH/4), this.ellR, this.ellR);
+		ellipse(this.endX - (this.rectW/2), this.centerY, this.ellR, this.ellR);
+	}
+	else if(this.rotation === 180){
+		rect(this.centerX-(this.rectW/2), this.endY - this.rectH, this.rectW, this.rectH);
+		ellipse(this.centerX + (this.rectW/4), this.endY - (this.rectH/2), this.ellR, this.ellR);
+		ellipse(this.centerX, this.endY - (this.rectH/2), this.ellR, this.ellR);
+	}
+	else if(this.rotation === 270){
+		rect(this.x , this.centerY - (this.rectH/2), this.rectW, this.rectH);
+		ellipse(this.x + (this.rectW/2), this.centerY - (this.rectH/4), this.ellR, this.ellR);
+		ellipse(this.x + (this.rectW/2),this.centerY,  this.ellR, this.ellR);
+	}
+	
 	pop();
 }
 
-Kitchen.prototype.condition = function(){
-	if(this.rotation === 0){
-		return mouseX - this.x > 0 && mouseX - this.x < this.width && mouseY - this.y > 0 && mouseY - this.y < this.length;
-	}
-	else if(this.rotation === 90){
-		return mouseX - this.x < 0 && mouseX - this.x > this.width && mouseY - this.y > 0 && mouseY - this.y < this.length;
-	}
-	else if(this.rotation === 180){
-		return mouseX - this.x < 0 && mouseX - this.x > this.width && mouseY - this.y < 0 && mouseY - this.y > this.length;
-	}
-	else if(this.rotation === 270){
-		return mouseX - this.x > 0 && mouseX - this.x < this.width && mouseY - this.y < 0 && mouseY - this.y > this.length;
-	}
-}
 
 Kitchen.prototype.clicked = function(){
-		if(this.condition()){
+		if(mouseX - this.x > 0 && mouseX - this.x < this.width && mouseY - this.y > 0 && mouseY - this.y < this.length){
 
 			if(mouseX - pmouseX > 5){
 				this.x +=10;
@@ -128,10 +145,14 @@ Kitchen.prototype.clicked = function(){
 				this.y -= 10;
 			}
 		}
+	this.centerX = this.x + (this.width/2);
+	this.centerY = this.y + (this.length/2);
+	this.endX = this.x + this.width;
+	this.endY = this.y + this.length;	
 }
 
 Kitchen.prototype.cursor = function(){
-	if(this.condition()){
+	if(mouseX - this.x > 0 && mouseX - this.x < this.width && mouseY - this.y > 0 && mouseY - this.y < this.length){
 		cursor(MOVE);
 	}
 	else{
@@ -140,9 +161,9 @@ Kitchen.prototype.cursor = function(){
 }
 
 Kitchen.prototype.rotate = function(){
-	var store = this.width;
-	this.width = this.length * -1;
-	this.length = store;
+	var store1 = this.rectW;
+	this.rectW = this.rectH;
+	this.rectH = store1;
 
 	this.rotation += 90;
 	if(this.rotation === 360){
