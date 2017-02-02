@@ -1,8 +1,8 @@
 var Grid = function(x, y, width, length){
 	this.x = x || 0;
 	this.y = y || 0;
-    this.width = width || 500;
-    this.length = length || 500;
+    this.width = width;
+    this.length = length;
 }
 
 Grid.prototype.show = function(){
@@ -16,9 +16,9 @@ Grid.prototype.show = function(){
     }*/
 
 
-    for(var i = 0; i < this.width; i += 10){
-        for(var j = 0; j < this.length; j+= 10){
-            rect(i, j, 10, 10);
+    for(var i = 0; i < this.width; i += 5){
+        for(var j = 0; j < this.length; j+= 5){
+            rect(i, j, 5, 5);
         }
     }
 }
@@ -27,11 +27,11 @@ Grid.prototype.show2 = function(){
 	push();
 	stroke(0);
 	strokeWeight(3);
-    for(var i = 0; i < this.width; i += 100){
-        line(0 , i, 500, i);
+    for(var i = 0; i < this.length; i += 50){
+        line(0 , i, this.width, i);
     }
-    for(var j = 0; j <this.length; j+= 100){
-    	line(j, 0, j, 500);
+    for(var j = 0; j <this.width; j+= 50){
+    	line(j, 0, j, this.length);
     }
     pop();
 }

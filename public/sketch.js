@@ -3,13 +3,13 @@ var state = [];
 
 //input width and length of canvas
 var canvasWidth = 50;
-var canvasLength = 50;
+var canvasLength = 65;
 
 //2d array to store circumference state
 var circumferenceArray = [];
-for(var y = 0; y <= canvasWidth + 1; y++){
+for(var y = 0; y <= canvasWidth*2 + 1; y++){
 	circumferenceArray[y] = [];
-	for (var z = 0; z <= canvasLength + 1; z++){
+	for (var z = 0; z <= canvasLength*2 + 1; z++){
 		circumferenceArray[y][z] = 0;
 	}
 }
@@ -30,7 +30,7 @@ var hangerArea = [];
 
 //initial grid
 var gridArray = [];
-gridArray.push(new Grid(0,0,canvasWidth*10,canvasLength*10));
+gridArray.push(new Grid(0,0,canvasWidth*10 + 1,canvasLength*10 + 1));
 
 //to store the objects
 var objects = {  bedroom: [],
@@ -207,8 +207,10 @@ function dimensionSubmit(){
 		}
 		else if(menuState==="hanger"){
 			hangerArea.push(area);
-		}						
-		generateRoom(width,length);
+		}
+		var widthPixel = width * 50;
+		var lengthPixel = length * 50;
+		generateRoom(widthPixel, lengthPixel);
 	})
 };
 
@@ -513,11 +515,11 @@ function generateRoom(width, length){
 	var length = length;
 	if(menuState === 'bedroom'){
 		objects.bedroom.push(new Bedroom(0, 0, width, length));
-		for(var i = 0; i < width; i+= 10){
+		for(var i = 0; i < width; i+= 5){
 			horizontalWalls.push(new Horizontalwall(i, 0, "bedroom", 0, 0, width, length));
 			horizontalWalls.push(new Horizontalwall(i, length, "bedroom", 0, 0, width, length));
 		}
-		for(var i = 0; i < length; i+= 10){
+		for(var i = 0; i < length; i+= 5){
 			verticalWalls.push(new Verticalwall(0, i, "bedroom", 0, 0, width, length));
 			verticalWalls.push(new Verticalwall(width, i, "bedroom", 0, 0, width, length));
 		}
@@ -525,11 +527,11 @@ function generateRoom(width, length){
 	}
 	else if(menuState === "bathroom"){
 		objects.bathroom.push(new Bathroom(0, 0, width, length));
-		for(var i = 0; i < width; i+= 10){
+		for(var i = 0; i < width; i+= 5){
 			horizontalWalls.push(new Horizontalwall(i, 0, "bathroom", 0, 0, width, length));
 			horizontalWalls.push(new Horizontalwall(i, length, "bathroom", 0, 0, width, length));
 		}
-		for(var i = 0; i < length; i+= 10){
+		for(var i = 0; i < length; i+= 5){
 			verticalWalls.push(new Verticalwall(0, i, "bathroom", 0, 0, width, length));
 			verticalWalls.push(new Verticalwall(width, i, "bathroom", 0, 0, width, length));
 		}
@@ -540,11 +542,11 @@ function generateRoom(width, length){
 		updateCircumferencePlus(0, 0, width , length);
 	}
 	else if(menuState === "kitchen"){
-		for(var i = 0; i < width; i+= 10){
+		for(var i = 0; i < width; i+= 5){
 			horizontalWalls.push(new Horizontalwall(i, 0, "kitchen", 0, 0, width, length));
 			horizontalWalls.push(new Horizontalwall(i, length, "kitchen", 0, 0, width, length));
 		}
-		for(var i = 0; i < length; i+= 10){
+		for(var i = 0; i < length; i+= 5){
 			verticalWalls.push(new Verticalwall(0, i, "kitchen", 0, 0, width, length));
 			verticalWalls.push(new Verticalwall(width, i, "kitchen", 0, 0, width, length));
 		}
@@ -553,11 +555,11 @@ function generateRoom(width, length){
 	}
 	else if(menuState === "livingroom"){
 		objects.livingroom.push(new Livingroom(0, 0, width, length));
-		for(var i = 0; i < width; i+= 10){
+		for(var i = 0; i < width; i+= 5){
 			horizontalWalls.push(new Horizontalwall(i, 0, "livingroom", 0, 0, width, length));
 			horizontalWalls.push(new Horizontalwall(i, length, "livingroom", 0, 0, width, length));
 		}
-		for(var i = 0; i < length; i+= 10){
+		for(var i = 0; i < length; i+= 5){
 			verticalWalls.push(new Verticalwall(0, i, "livingroom", 0, 0, width, length));
 			verticalWalls.push(new Verticalwall(width, i, "livingroom", 0, 0, width, length));
 		}
@@ -585,10 +587,10 @@ function generateRoom(width, length){
 
 //to update the array for circumference
 function updateCircumferencePlus(x,y,width,length){
-	var startX = x/10;
-	var startY = y/10;
-	var endX = startX + width/10;
-	var endY = startY + length/10;
+	var startX = x/5;
+	var startY = y/5;
+	var endX = startX + width/5;
+	var endY = startY + length/5;
 	for(var i = startX; i <= endX - 1; i++ ){
 		circumferenceArray[i][startY] += 1;
 	}
@@ -605,10 +607,10 @@ function updateCircumferencePlus(x,y,width,length){
 
 //to update the array for circumference
 function updateCircumferenceMinus(x,y,width,length){
-	var startX = x/10;
-	var startY = y/10;
-	var endX = startX + width/10;
-	var endY = startY + length/10;
+	var startX = x/5;
+	var startY = y/5;
+	var endX = startX + width/5;
+	var endY = startY + length/5;
 	for(var i = startX; i <= endX - 1; i++ ){
 		circumferenceArray[i][startY] -= 1;
 	}

@@ -45,103 +45,85 @@ Bathroom.prototype.show = function(){
 }
 
 Bathroom.prototype.clicked = function(){
-		if(mouseX - this.x > 0 && mouseX - this.x < this.width && mouseY - this.y > 0 && mouseY - this.y < this.length){
-			
-			if(mouseX - pmouseX > 5){
-				this.x +=10;
-			}
-			if(mouseY - pmouseY > 5){
-				this.y +=10;
-			}
-			if(mouseX - pmouseX < -5){
-				this.x -= 10;
-			}
-			if(mouseY - pmouseY < -5){
-				this.y -= 10;
-			}
-
-
-			if(mouseX - pmouseX > 15){
-				this.x +=10;
-			}
-			if(mouseY - pmouseY > 15){
-				this.y +=10;
-			}
-			if(mouseX - pmouseX < -15){
-				this.x -= 10;
-			}
-			if(mouseY - pmouseY < -15){
-				this.y -= 10;
-			}
-
-
-			if(mouseX - pmouseX > 25){
-				this.x +=10;
-			}
-			if(mouseY - pmouseY > 25){
-				this.y +=10;
-			}
-			if(mouseX - pmouseX < -25){
-				this.x -= 10;
-			}
-			if(mouseY - pmouseY < -25){
-				this.y -= 10;
-			}
-
-
-			if(mouseX - pmouseX > 35){
-				this.x +=10;
-			}
-			if(mouseY - pmouseY > 35){
-				this.y +=10;
-			}
-			if(mouseX - pmouseX < -35){
-				this.x -= 10;
-			}
-			if(mouseY - pmouseY < -35){
-				this.y -= 10;
-			}
-
-
-			if(mouseX - pmouseX > 45){
-				this.x +=10;
-			}
-			if(mouseY - pmouseY > 45){
-				this.y +=10;
-			}
-			if(mouseX - pmouseX < -45){
-				this.x -= 10;
-			}
-			if(mouseY - pmouseY < -45){
-				this.y -= 10;
-			}
-
-			if(mouseX - pmouseX > 55){
-				this.x +=10;
-			}
-			if(mouseY - pmouseY > 55){
-				this.y +=10;
-			}
-			if(mouseX - pmouseX < -55){
-				this.x -= 10;
-			}
-			if(mouseY - pmouseY < -55){
-				this.y -= 10;
-			}
-
-			if(mouseX - pmouseX > 60){
-				this.x +=10;
-			}
-			if(mouseY - pmouseY > 60){
-				this.y +=10;
-			}
-			if(mouseX - pmouseX < -60){
-				this.x -= 10;
-			}
-			if(mouseY - pmouseY < -60){
-				this.y -= 10;
-			}
+	if(mouseX - this.x > 0 && mouseX - this.x < this.width && mouseY - this.y > 0 && mouseY - this.y < this.length){
+		if(mouseX - pmouseX > 2.5){
+			this.x +=5;
 		}
+		if(mouseY - pmouseY > 2.5){
+			this.y +=5;
+		}
+		if(mouseX - pmouseX < -2.5){
+			this.x -= 5;
+		}
+		if(mouseY - pmouseY < -2.5){
+			this.y -= 5;
+		}
+		
+		if(mouseX - pmouseX > 5){
+			this.x +=5;
+		}
+		if(mouseY - pmouseY > 5){
+			this.y +=5;
+		}
+		if(mouseX - pmouseX < -5){
+			this.x -= 5;
+		}
+		if(mouseY - pmouseY < -5){
+			this.y -= 5;
+		}
+		
+		if(mouseX - pmouseX > 7.5){
+			this.x +=5;
+		}
+		if(mouseY - pmouseY > 7.5){
+			this.y +=5;
+		}
+		if(mouseX - pmouseX < -7.5){
+			this.x -= 5;
+		}
+		if(mouseY - pmouseY < -7.5){
+			this.y -= 5;
+		}
+		
+		if(mouseX - pmouseX > 10){
+			this.x +=5;
+		}
+		if(mouseY - pmouseY > 10){
+			this.y +=5;
+		}
+		if(mouseX - pmouseX < -10){
+			this.x -= 5;
+		}
+		if(mouseY - pmouseY < -10){
+			this.y -= 5;
+		}
+		
+		if(mouseX - pmouseX > 12.5){
+			this.x +=5;
+		}
+		if(mouseY - pmouseY > 12.5){
+			this.y +=5;
+		}
+		if(mouseX - pmouseX < -12.5){
+			this.x -= 5;
+		}
+		if(mouseY - pmouseY < -12.5){
+			this.y -= 5;
+		}		
+		
+		if(mouseX - pmouseX > 15){
+			this.x +=5;
+		}
+		if(mouseY - pmouseY > 15){
+			this.y +=5;
+		}
+		if(mouseX - pmouseX < -15){
+			this.x -= 5;
+		}
+		if(mouseY - pmouseY < -15){
+			this.y -= 5;
+		}
+	}
 	this.centerX = this.x + (this.width/2);
 	this.centerY = this.y + (this.length/2);
 	this.endX = this.x + this.width;
