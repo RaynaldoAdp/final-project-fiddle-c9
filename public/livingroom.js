@@ -51,83 +51,82 @@ Livingroom.prototype.show = function(){
 
 Livingroom.prototype.clicked = function(){
 	if(mouseX - this.x > 0 && mouseX - this.x < this.width && mouseY - this.y > 0 && mouseY - this.y < this.length){
-		if(mouseX - pmouseX > 2.5){
+		if(mouseX - pmouseX > 2.5 && this.x + this.width + 5 <= 500){
 			this.x +=5;
 		}
-		if(mouseY - pmouseY > 2.5){
-			this.y +=5;
-		}
-		if(mouseX - pmouseX < -2.5){
-			this.x -= 5;
-		}
-		if(mouseY - pmouseY < -2.5){
-			this.y -= 5;
-		}
-		
-		if(mouseX - pmouseX > 5){
+		if(mouseX - pmouseX > 5 && this.x + this.width + 5 <= 500){
 			this.x +=5;
 		}
-		if(mouseY - pmouseY > 5){
-			this.y +=5;
-		}
-		if(mouseX - pmouseX < -5){
-			this.x -= 5;
-		}
-		if(mouseY - pmouseY < -5){
-			this.y -= 5;
-		}
-		
-		if(mouseX - pmouseX > 7.5){
+		if(mouseX - pmouseX > 7.5 && this.x + this.width + 5 <= 500){
 			this.x +=5;
 		}
-		if(mouseY - pmouseY > 7.5){
-			this.y +=5;
-		}
-		if(mouseX - pmouseX < -7.5){
-			this.x -= 5;
-		}
-		if(mouseY - pmouseY < -7.5){
-			this.y -= 5;
-		}
-		
-		if(mouseX - pmouseX > 10){
+		if(mouseX - pmouseX > 10 && this.x + this.width + 5 <= 500){
 			this.x +=5;
 		}
-		if(mouseY - pmouseY > 10){
-			this.y +=5;
-		}
-		if(mouseX - pmouseX < -10){
-			this.x -= 5;
-		}
-		if(mouseY - pmouseY < -10){
-			this.y -= 5;
-		}
-		
-		if(mouseX - pmouseX > 12.5){
+		if(mouseX - pmouseX > 12.5 && this.x + this.width + 5 <= 500){
 			this.x +=5;
 		}
-		if(mouseY - pmouseY > 12.5){
-			this.y +=5;
-		}
-		if(mouseX - pmouseX < -12.5){
-			this.x -= 5;
-		}
-		if(mouseY - pmouseY < -12.5){
-			this.y -= 5;
-		}		
-		
-		if(mouseX - pmouseX > 15){
+		if(mouseX - pmouseX > 15 && this.x + this.width + 5 <= 500){
 			this.x +=5;
 		}
-		if(mouseY - pmouseY > 15){
+
+	
+		if(mouseY - pmouseY > 2.5 && this.y + this.length + 5 <= 650){
 			this.y +=5;
 		}
-		if(mouseX - pmouseX < -15){
+		if(mouseY - pmouseY > 5 && this.y + this.length + 5 <= 650){
+			this.y +=5;
+		}
+		if(mouseY - pmouseY > 7.5 && this.y + this.length + 5 <= 650){
+			this.y +=5;
+		}	
+		if(mouseY - pmouseY > 10 && this.y + this.length + 5 <= 650){
+			this.y +=5;
+		}	
+		if(mouseY - pmouseY > 12.5 && this.y + this.length + 5 <= 650){
+			this.y +=5;
+		}	
+		if(mouseY - pmouseY > 15 && this.y + this.length + 5 <= 650){
+			this.y +=5;
+		}			
+	
+		if(mouseX - pmouseX < -2.5 && this.x - 5 >= 0){
 			this.x -= 5;
 		}
-		if(mouseY - pmouseY < -15){
+		if(mouseX - pmouseX < -5 && this.x - 5 >= 0){
+			this.x -= 5;
+		}
+		if(mouseX - pmouseX < -7.5 && this.x - 5 >= 0){
+			this.x -= 5;
+		}
+		if(mouseX - pmouseX < -10 && this.x - 5 >= 0){
+			this.x -= 5;
+		}
+		if(mouseX - pmouseX < -12.5 && this.x - 5 >= 0){
+			this.x -= 5;
+		}
+		if(mouseX - pmouseX < -15 && this.x - 5 >= 0){
+			this.x -= 5;
+		}
+	
+		if(mouseY - pmouseY < -2.5 && this.y - 5 >= 0){
 			this.y -= 5;
 		}
+		if(mouseY - pmouseY < -5 && this.y - 5 >= 0){
+			this.y -= 5;
+		}
+		if(mouseY - pmouseY < -7.5 && this.y - 5 >= 0){
+			this.y -= 5;
+		}
+		if(mouseY - pmouseY < -10 && this.y - 5 >= 0){
+			this.y -= 5;
+		}
+		if(mouseY - pmouseY < -12.5 && this.y - 5 >= 0){
+			this.y -= 5;
+		}
+		if(mouseY - pmouseY < -15 && this.y - 5 >= 0){
+			this.y -= 5;
+		}			
 	}
 	this.centerX = this.x + (this.width/2);
 	this.centerY = this.y + (this.length/2);
@@ -145,20 +144,22 @@ Livingroom.prototype.cursor = function(){
 }
 
 Livingroom.prototype.rotate = function(){
-	var store1 = this.rect1W;
-	this.rect1W = this.rect1H;
-	this.rect1H = store1;
+	if(mouseX - this.x > 0 && mouseX - this.x < this.width && mouseY - this.y > 0 && mouseY - this.y < this.length){
+		var store1 = this.rect1W;
+		this.rect1W = this.rect1H;
+		this.rect1H = store1;
+		
+		var store2 = this.rect2W;
+		this.rect2W = this.rect2H;
+		this.rect2H = store2;
+		
+		var store3 = this.rect3W;
+		this.rect3W = this.rect3H;
+		this.rect3H = store3;
 	
-	var store2 = this.rect2W;
-	this.rect2W = this.rect2H;
-	this.rect2H = store2;
-	
-	var store3 = this.rect3W;
-	this.rect3W = this.rect3H;
-	this.rect3H = store3;
-
-	this.rotation += 90;
-	if(this.rotation === 360){
-		this.rotation = 0;
+		this.rotation += 90;
+		if(this.rotation === 360){
+			this.rotation = 0;
+		}
 	}
 }

@@ -46,83 +46,83 @@ Bathroom.prototype.show = function(){
 
 Bathroom.prototype.clicked = function(){
 	if(mouseX - this.x > 0 && mouseX - this.x < this.width && mouseY - this.y > 0 && mouseY - this.y < this.length){
-		if(mouseX - pmouseX > 2.5){
-			this.x +=5;
-		}
-		if(mouseY - pmouseY > 2.5){
-			this.y +=5;
-		}
-		if(mouseX - pmouseX < -2.5){
-			this.x -= 5;
-		}
-		if(mouseY - pmouseY < -2.5){
-			this.y -= 5;
-		}
 		
-		if(mouseX - pmouseX > 5){
+		if(mouseX - pmouseX > 2.5 && this.x + this.width + 5 <= 500){
 			this.x +=5;
 		}
-		if(mouseY - pmouseY > 5){
-			this.y +=5;
-		}
-		if(mouseX - pmouseX < -5){
-			this.x -= 5;
-		}
-		if(mouseY - pmouseY < -5){
-			this.y -= 5;
-		}
-		
-		if(mouseX - pmouseX > 7.5){
+		if(mouseX - pmouseX > 5 && this.x + this.width + 5 <= 500){
 			this.x +=5;
 		}
-		if(mouseY - pmouseY > 7.5){
-			this.y +=5;
-		}
-		if(mouseX - pmouseX < -7.5){
-			this.x -= 5;
-		}
-		if(mouseY - pmouseY < -7.5){
-			this.y -= 5;
-		}
-		
-		if(mouseX - pmouseX > 10){
+		if(mouseX - pmouseX > 7.5 && this.x + this.width + 5 <= 500){
 			this.x +=5;
 		}
-		if(mouseY - pmouseY > 10){
-			this.y +=5;
-		}
-		if(mouseX - pmouseX < -10){
-			this.x -= 5;
-		}
-		if(mouseY - pmouseY < -10){
-			this.y -= 5;
-		}
-		
-		if(mouseX - pmouseX > 12.5){
+		if(mouseX - pmouseX > 10 && this.x + this.width + 5 <= 500){
 			this.x +=5;
 		}
-		if(mouseY - pmouseY > 12.5){
-			this.y +=5;
-		}
-		if(mouseX - pmouseX < -12.5){
-			this.x -= 5;
-		}
-		if(mouseY - pmouseY < -12.5){
-			this.y -= 5;
-		}		
-		
-		if(mouseX - pmouseX > 15){
+		if(mouseX - pmouseX > 12.5 && this.x + this.width + 5 <= 500){
 			this.x +=5;
 		}
-		if(mouseY - pmouseY > 15){
+		if(mouseX - pmouseX > 15 && this.x + this.width + 5 <= 500){
+			this.x +=5;
+		}
+
+	
+		if(mouseY - pmouseY > 2.5 && this.y + this.length + 5 <= 650){
 			this.y +=5;
 		}
-		if(mouseX - pmouseX < -15){
+		if(mouseY - pmouseY > 5 && this.y + this.length + 5 <= 650){
+			this.y +=5;
+		}
+		if(mouseY - pmouseY > 7.5 && this.y + this.length + 5 <= 650){
+			this.y +=5;
+		}	
+		if(mouseY - pmouseY > 10 && this.y + this.length + 5 <= 650){
+			this.y +=5;
+		}	
+		if(mouseY - pmouseY > 12.5 && this.y + this.length + 5 <= 650){
+			this.y +=5;
+		}	
+		if(mouseY - pmouseY > 15 && this.y + this.length + 5 <= 650){
+			this.y +=5;
+		}			
+	
+		if(mouseX - pmouseX < -2.5 && this.x - 5 >= 0){
 			this.x -= 5;
 		}
-		if(mouseY - pmouseY < -15){
+		if(mouseX - pmouseX < -5 && this.x - 5 >= 0){
+			this.x -= 5;
+		}
+		if(mouseX - pmouseX < -7.5 && this.x - 5 >= 0){
+			this.x -= 5;
+		}
+		if(mouseX - pmouseX < -10 && this.x - 5 >= 0){
+			this.x -= 5;
+		}
+		if(mouseX - pmouseX < -12.5 && this.x - 5 >= 0){
+			this.x -= 5;
+		}
+		if(mouseX - pmouseX < -15 && this.x - 5 >= 0){
+			this.x -= 5;
+		}
+	
+		if(mouseY - pmouseY < -2.5 && this.y - 5 >= 0){
 			this.y -= 5;
 		}
+		if(mouseY - pmouseY < -5 && this.y - 5 >= 0){
+			this.y -= 5;
+		}
+		if(mouseY - pmouseY < -7.5 && this.y - 5 >= 0){
+			this.y -= 5;
+		}
+		if(mouseY - pmouseY < -10 && this.y - 5 >= 0){
+			this.y -= 5;
+		}
+		if(mouseY - pmouseY < -12.5 && this.y - 5 >= 0){
+			this.y -= 5;
+		}
+		if(mouseY - pmouseY < -15 && this.y - 5 >= 0){
+			this.y -= 5;
+		}			
 	}
 	this.centerX = this.x + (this.width/2);
 	this.centerY = this.y + (this.length/2);
@@ -140,16 +140,18 @@ Bathroom.prototype.cursor = function(){
 }
 
 Bathroom.prototype.rotate = function(){
-	var store1 = this.rectW;
-	this.rectW = this.rectH;
-	this.rectH = store1;
-	
-	var store2 = this.arcW;
-	this.arcW = this.arcH;
-	this.arcH = store2;
-	
-	this.rotation += 90;
-	if(this.rotation === 360){
-		this.rotation = 0;
+	if(mouseX - this.x > 0 && mouseX - this.x < this.width && mouseY - this.y > 0 && mouseY - this.y < this.length){
+		var store1 = this.rectW;
+		this.rectW = this.rectH;
+		this.rectH = store1;
+		
+		var store2 = this.arcW;
+		this.arcW = this.arcH;
+		this.arcH = store2;
+		
+		this.rotation += 90;
+		if(this.rotation === 360){
+			this.rotation = 0;
+		}
 	}
 }

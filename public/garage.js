@@ -32,83 +32,82 @@ Garage.prototype.condition = function(){
 
 Garage.prototype.clicked = function(){
 	if(mouseX - this.x > 0 && mouseX - this.x < this.width && mouseY - this.y > 0 && mouseY - this.y < this.length){
-		if(mouseX - pmouseX > 2.5){
+		if(mouseX - pmouseX > 2.5 && this.x + this.width + 5 <= 500){
 			this.x +=5;
 		}
-		if(mouseY - pmouseY > 2.5){
-			this.y +=5;
-		}
-		if(mouseX - pmouseX < -2.5){
-			this.x -= 5;
-		}
-		if(mouseY - pmouseY < -2.5){
-			this.y -= 5;
-		}
-		
-		if(mouseX - pmouseX > 5){
+		if(mouseX - pmouseX > 5 && this.x + this.width + 5 <= 500){
 			this.x +=5;
 		}
-		if(mouseY - pmouseY > 5){
-			this.y +=5;
-		}
-		if(mouseX - pmouseX < -5){
-			this.x -= 5;
-		}
-		if(mouseY - pmouseY < -5){
-			this.y -= 5;
-		}
-		
-		if(mouseX - pmouseX > 7.5){
+		if(mouseX - pmouseX > 7.5 && this.x + this.width + 5 <= 500){
 			this.x +=5;
 		}
-		if(mouseY - pmouseY > 7.5){
-			this.y +=5;
-		}
-		if(mouseX - pmouseX < -7.5){
-			this.x -= 5;
-		}
-		if(mouseY - pmouseY < -7.5){
-			this.y -= 5;
-		}
-		
-		if(mouseX - pmouseX > 10){
+		if(mouseX - pmouseX > 10 && this.x + this.width + 5 <= 500){
 			this.x +=5;
 		}
-		if(mouseY - pmouseY > 10){
-			this.y +=5;
-		}
-		if(mouseX - pmouseX < -10){
-			this.x -= 5;
-		}
-		if(mouseY - pmouseY < -10){
-			this.y -= 5;
-		}
-		
-		if(mouseX - pmouseX > 12.5){
+		if(mouseX - pmouseX > 12.5 && this.x + this.width + 5 <= 500){
 			this.x +=5;
 		}
-		if(mouseY - pmouseY > 12.5){
-			this.y +=5;
-		}
-		if(mouseX - pmouseX < -12.5){
-			this.x -= 5;
-		}
-		if(mouseY - pmouseY < -12.5){
-			this.y -= 5;
-		}		
-		
-		if(mouseX - pmouseX > 15){
+		if(mouseX - pmouseX > 15 && this.x + this.width + 5 <= 500){
 			this.x +=5;
 		}
-		if(mouseY - pmouseY > 15){
+
+	
+		if(mouseY - pmouseY > 2.5 && this.y + this.length + 5 <= 650){
 			this.y +=5;
 		}
-		if(mouseX - pmouseX < -15){
+		if(mouseY - pmouseY > 5 && this.y + this.length + 5 <= 650){
+			this.y +=5;
+		}
+		if(mouseY - pmouseY > 7.5 && this.y + this.length + 5 <= 650){
+			this.y +=5;
+		}	
+		if(mouseY - pmouseY > 10 && this.y + this.length + 5 <= 650){
+			this.y +=5;
+		}	
+		if(mouseY - pmouseY > 12.5 && this.y + this.length + 5 <= 650){
+			this.y +=5;
+		}	
+		if(mouseY - pmouseY > 15 && this.y + this.length + 5 <= 650){
+			this.y +=5;
+		}			
+	
+		if(mouseX - pmouseX < -2.5 && this.x - 5 >= 0){
 			this.x -= 5;
 		}
-		if(mouseY - pmouseY < -15){
+		if(mouseX - pmouseX < -5 && this.x - 5 >= 0){
+			this.x -= 5;
+		}
+		if(mouseX - pmouseX < -7.5 && this.x - 5 >= 0){
+			this.x -= 5;
+		}
+		if(mouseX - pmouseX < -10 && this.x - 5 >= 0){
+			this.x -= 5;
+		}
+		if(mouseX - pmouseX < -12.5 && this.x - 5 >= 0){
+			this.x -= 5;
+		}
+		if(mouseX - pmouseX < -15 && this.x - 5 >= 0){
+			this.x -= 5;
+		}
+	
+		if(mouseY - pmouseY < -2.5 && this.y - 5 >= 0){
 			this.y -= 5;
 		}
+		if(mouseY - pmouseY < -5 && this.y - 5 >= 0){
+			this.y -= 5;
+		}
+		if(mouseY - pmouseY < -7.5 && this.y - 5 >= 0){
+			this.y -= 5;
+		}
+		if(mouseY - pmouseY < -10 && this.y - 5 >= 0){
+			this.y -= 5;
+		}
+		if(mouseY - pmouseY < -12.5 && this.y - 5 >= 0){
+			this.y -= 5;
+		}
+		if(mouseY - pmouseY < -15 && this.y - 5 >= 0){
+			this.y -= 5;
+		}			
 	}
 }
 
@@ -122,13 +121,14 @@ Garage.prototype.cursor = function(){
 }
 
 Garage.prototype.rotate = function(){
-	var store = this.width;
-	this.width = this.length * -1;
-	this.length = store;
-
-	this.rotation += 90;
-	if(this.rotation === 360){
-		this.rotation = 0;
+	if(mouseX - this.x > 0 && mouseX - this.x < this.width && mouseY - this.y > 0 && mouseY - this.y < this.length){
+		var store = this.width;
+		this.width = this.length * -1;
+		this.length = store;
+	
+		this.rotation += 90;
+		if(this.rotation === 360){
+			this.rotation = 0;
+		}
 	}
-	console.log(this.x, this.y, this.width, this.length);
 }

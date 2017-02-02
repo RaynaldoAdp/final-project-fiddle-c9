@@ -633,7 +633,7 @@ function calculateTotalCircumference(array){
 			var target = array[i][j];
 			var nextTarget = array[i][j+1];
 			if(target > 0 && nextTarget > 0){
-				total +=10;
+				total +=5;
 			} 
 		}
 	}
@@ -642,7 +642,7 @@ function calculateTotalCircumference(array){
 		for(var j = 0; j <= canvasLength; j++){
 			var target = array[j][i];
 			if(target > 0 && array[j+1][i] > 0){
-				total +=10;
+				total +=5;
 			} 
 		}
 	}
@@ -652,8 +652,8 @@ function calculateTotalCircumference(array){
 
 function foundationCircumference(){
 	var total = 0;
-	total += horizontalWalls.length * 10;
-	total += verticalWalls.length * 10;
+	total += horizontalWalls.length * 5;
+	total += verticalWalls.length * 5;
 	var horizontalStorage = {};
 	var verticalStorage = {};
 	for(var i=0; i < horizontalWalls.length; i++){
@@ -663,7 +663,7 @@ function foundationCircumference(){
 		var coordinate = x +"," + y;
 
 		if(coordinate in horizontalStorage){
-			total -= 10;
+			total -= 5;
 		}
 		else{
 			horizontalStorage[coordinate] = null;
@@ -677,7 +677,7 @@ function foundationCircumference(){
 		var coordinate = x +"," + y;
 
 		if(coordinate in verticalStorage){
-			total -= 10;
+			total -= 5;
 		}
 		else{
 			verticalStorage[coordinate] = null;

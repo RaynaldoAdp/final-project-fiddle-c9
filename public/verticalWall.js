@@ -21,107 +21,107 @@ Verticalwall.prototype.show = function(){
 
 Verticalwall.prototype.clicked = function(){
 	if(mouseX - this.xRect > 0 && mouseX - this.xRect < this.width && mouseY - this.yRect > 0 && mouseY - this.yRect < this.length){
-		if(mouseX - pmouseX > 2.5){
+		if(mouseX - pmouseX > 2.5 && this.xRect + this.width + 5 <= 500){
 			this.x +=5;
-			this.xRect += 5;
+			this.xRect +=5
 		}
-		if(mouseY - pmouseY > 2.5){
-			this.y +=5;
-			this.yRect += 5;
-		}
-		if(mouseX - pmouseX < -2.5){
-			this.x -= 5;
-			this.xRect -= 5;
-		}
-		if(mouseY - pmouseY < -2.5){
-			this.y -= 5;
-			this.yRect -= 5;
-		}
-		
-		if(mouseX - pmouseX > 5){
+		if(mouseX - pmouseX > 5 && this.xRect + this.width + 5 <= 500){
 			this.x +=5;
-			this.xRect += 5;
+			this.xRect +=5
 		}
-		if(mouseY - pmouseY > 5){
-			this.y +=5;
-			this.yRect += 5;
-		}
-		if(mouseX - pmouseX < -5){
-			this.x -= 5;
-			this.xRect -= 5;
-		}
-		if(mouseY - pmouseY < -5){
-			this.y -= 5;
-			this.yRect -= 5;
-		}
-		
-		if(mouseX - pmouseX > 7.5){
+		if(mouseX - pmouseX > 7.5 && this.xRect + this.width + 5 <= 500){
 			this.x +=5;
-			this.xRect += 5;
+			this.xRect +=5
 		}
-		if(mouseY - pmouseY > 7.5){
-			this.y +=5;
-			this.yRect += 5;
-		}
-		if(mouseX - pmouseX < -7.5){
-			this.x -= 5;
-			this.xRect -= 5;
-		}
-		if(mouseY - pmouseY < -7.5){
-			this.y -= 5;
-			this.yRect -= 5;
-		}
-		
-		if(mouseX - pmouseX > 10){
+		if(mouseX - pmouseX > 10 && this.xRect + this.width + 5 <= 500){
 			this.x +=5;
-			this.xRect += 5;
+			this.xRect +=5
 		}
-		if(mouseY - pmouseY > 10){
-			this.y +=5;
-			this.yRect += 5;
-		}
-		if(mouseX - pmouseX < -10){
-			this.x -= 5;
-			this.xRect -= 5;
-		}
-		if(mouseY - pmouseY < -10){
-			this.y -= 5;
-			this.yRect -= 5;
-		}
-		
-		if(mouseX - pmouseX > 12.5){
+		if(mouseX - pmouseX > 12.5 && this.xRect + this.width + 5 <= 500){
 			this.x +=5;
-			this.xRect += 5;
+			this.xRect +=5
 		}
-		if(mouseY - pmouseY > 12.5){
-			this.y +=5;
-			this.yRect += 5;
-		}
-		if(mouseX - pmouseX < -12.5){
-			this.x -= 5;
-			this.xRect -= 5;
-		}
-		if(mouseY - pmouseY < -12.5){
-			this.y -= 5;
-			this.yRect -= 5;
-		}		
-		
-		if(mouseX - pmouseX > 15){
+		if(mouseX - pmouseX > 15 && this.xRect + this.width + 5 <= 500){
 			this.x +=5;
-			this.xRect += 5;			
+			this.xRect +=5
 		}
-		if(mouseY - pmouseY > 15){
+
+	
+		if(mouseY - pmouseY > 2.5 && this.yRect + this.length + 5 <= 650){
 			this.y +=5;
-			this.yRect +=5;
+			this.yRect += 5
 		}
-		if(mouseX - pmouseX < -15){
+		if(mouseY - pmouseY > 5 && this.yRect + this.length + 5 <= 650){
+			this.y +=5;
+			this.yRect += 5
+		}
+		if(mouseY - pmouseY > 7.5 && this.yRect + this.length + 5 <= 650){
+			this.y +=5;
+			this.yRect += 5
+		}	
+		if(mouseY - pmouseY > 10 && this.yRect + this.length + 5 <= 650){
+			this.y +=5;
+			this.yRect += 5
+		}	
+		if(mouseY - pmouseY > 12.5 && this.yRect + this.length + 5 <= 650){
+			this.y +=5;
+			this.yRect += 5
+		}	
+		if(mouseY - pmouseY > 15 && this.yRect + this.length + 5 <= 650){
+			this.y +=5;
+			this.yRect += 5
+		}			
+	
+		if(mouseX - pmouseX < -2.5 && this.xRect - 5 >= 0){
 			this.x -= 5;
-			this.xRect -= 5;			
+			this.xRect -=5
+			
 		}
-		if(mouseY - pmouseY < -15){
+		if(mouseX - pmouseX < -5 && this.xRect - 5 >= 0){
+			this.x -= 5;
+			this.xRect -=5
+		}
+		if(mouseX - pmouseX < -7.5 && this.xRect - 5 >= 0){
+			this.x -= 5;
+			this.xRect -=5
+		}
+		if(mouseX - pmouseX < -10 && this.xRect - 5 >= 0){
+			this.x -= 5;
+			this.xRect -=5
+		}
+		if(mouseX - pmouseX < -12.5 && this.xRect - 5 >= 0){
+			this.x -= 5;
+			this.xRect -=5
+		}
+		if(mouseX - pmouseX < -15 && this.xRect - 5 >= 0){
+			this.x -= 5;
+			this.xRect -=5
+		}
+	
+		if(mouseY - pmouseY < -2.5 && this.yRect - 5 >= 0){
 			this.y -= 5;
-			this.yRect -= 5;
+			this.yRect -= 5
 		}
+		if(mouseY - pmouseY < -5 && this.yRect - 5 >= 0){
+			this.y -= 5;
+			this.yRect -= 5
+		}
+		if(mouseY - pmouseY < -7.5 && this.yRect - 5 >= 0){
+			this.y -= 5;
+			this.yRect -= 5
+		}
+		if(mouseY - pmouseY < -10 && this.yRect - 5 >= 0){
+			this.y -= 5;
+			this.yRect -= 5
+		}
+		if(mouseY - pmouseY < -12.5 && this.yRect - 5 >= 0){
+			this.y -= 5;
+			this.yRect -= 5
+		}
+		if(mouseY - pmouseY < -15 && this.yRect - 5 >= 0){
+			this.y -= 5;
+			this.yRect -= 5
+		}			
 	}
 	this.end = this.y + 5;
 }
