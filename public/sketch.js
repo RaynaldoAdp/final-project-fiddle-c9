@@ -409,9 +409,7 @@ function mouseDragged() {
   	}
   	else if(menuState ==='garden'){
 		for(var i = 0; i< objects.garden.length; i++){
-			updateCircumferenceMinus(objects.garden[i].x, objects.garden[i].y, objects.garden[i].width, objects.garden[i].length);
 			objects.garden[i].clicked();
-			updateCircumferencePlus(objects.garden[i].x, objects.garden[i].y, objects.garden[i].width, objects.garden[i].length);
 		}
   	}
   	else if(menuState ==='kitchen'){
@@ -455,31 +453,23 @@ function mouseDragged() {
   	}
    	else if(menuState ==='garage'){
 		for(var i = 0; i< objects.garage.length; i++){
-			updateCircumferenceMinus(objects.garage[i].x, objects.garage[i].y, objects.garage[i].width, objects.garage[i].length);
 			objects.garage[i].clicked();
-			updateCircumferencePlus(objects.garage[i].x, objects.garage[i].y, objects.garage[i].width, objects.garage[i].length);
 		}
 
   	}
   	else if(menuState ==='carpark'){
 		for(var i = 0; i< objects.carpark.length; i++){
-			updateCircumferenceMinus(objects.carpark[i].x, objects.carpark[i].y, objects.carpark[i].width, objects.carpark[i].length);
 			objects.carpark[i].clicked();
-			updateCircumferencePlus(objects.carpark[i].x, objects.carpark[i].y, objects.carpark[i].width, objects.carpark[i].length);
 		}
   	}
   	else if(menuState ==='terrace'){
 		for(var i = 0; i< objects.terrace.length; i++){
-			updateCircumferenceMinus(objects.terrace[i].x, objects.terrace[i].y, objects.terrace[i].width, objects.terrace[i].length);
 			objects.terrace[i].clicked();
-			updateCircumferencePlus(objects.terrace[i].x, objects.terrace[i].y, objects.terrace[i].width, objects.terrace[i].length);
 		}
   	}
   	else if(menuState ==='hanger'){
 		for(var i = 0; i< objects.hanger.length; i++){
-			updateCircumferenceMinus(objects.hanger[i].x, objects.hanger[i].y, objects.hanger[i].width, objects.hanger[i].length);
 			objects.hanger[i].clicked();
-			updateCircumferencePlus(objects.hanger[i].x, objects.hanger[i].y, objects.hanger[i].width, objects.hanger[i].length);
 		}
   	} 	  	
 }
@@ -513,6 +503,7 @@ function mouseWheel(event) {
 function generateRoom(width, length){
 	var width = width;
 	var length = length;
+	
 	if(menuState === 'bedroom'){
 		objects.bedroom.push(new Bedroom(0, 0, width, length));
 		for(var i = 0; i < width; i+= 5){
@@ -525,6 +516,7 @@ function generateRoom(width, length){
 		}
 		updateCircumferencePlus(0, 0, width , length);
 	}
+	
 	else if(menuState === "bathroom"){
 		objects.bathroom.push(new Bathroom(0, 0, width, length));
 		for(var i = 0; i < width; i+= 5){
@@ -537,10 +529,11 @@ function generateRoom(width, length){
 		}
 		updateCircumferencePlus(0, 0, width , length);
 	}
+	
 	else if(menuState === "garden"){
 		objects.garden.push(new Garden(0, 0, width, length));
-		updateCircumferencePlus(0, 0, width , length);
 	}
+	
 	else if(menuState === "kitchen"){
 		for(var i = 0; i < width; i+= 5){
 			horizontalWalls.push(new Horizontalwall(i, 0, "kitchen", 0, 0, width, length));
@@ -553,6 +546,7 @@ function generateRoom(width, length){
 		objects.kitchen.push(new Kitchen(0, 0, width, length));
 		updateCircumferencePlus(0, 0, width , length);
 	}
+	
 	else if(menuState === "livingroom"){
 		objects.livingroom.push(new Livingroom(0, 0, width, length));
 		for(var i = 0; i < width; i+= 5){
@@ -565,21 +559,21 @@ function generateRoom(width, length){
 		}
 		updateCircumferencePlus(0, 0, width , length);
 	}
+	
 	else if(menuState === "garage"){
 		objects.garage.push(new Garage(0, 0, width, length));
-		updateCircumferencePlus(0, 0, width , length);
 	}
+	
 	else if(menuState === "carpark"){
 		objects.carpark.push(new Carpark(0, 0, width, length));
-		updateCircumferencePlus(0, 0, width , length);
 	}
+	
 	else if(menuState === "terrace"){
 		objects.terrace.push(new Terrace(0, 0, width, length));
-		updateCircumferencePlus(0, 0, width , length);
 	}
+	
 	else if(menuState === "hanger"){
 		objects.hanger.push(new Hanger(0, 0, width, length));
-		updateCircumferencePlus(0, 0, width , length);
 	}		
 }
 
@@ -626,12 +620,12 @@ function updateCircumferenceMinus(x,y,width,length){
 }
 
 //to calculate total circumference
-function calculateTotalCircumference(array){
+function calculateTotalCircumference(){
 	var total = 0;
 	for(var i =0; i <= canvasWidth; i++){
 		for(var j = 0; j <= canvasLength; j++){
-			var target = array[i][j];
-			var nextTarget = array[i][j+1];
+			var target = circumferenceArray[i][j];
+			var nextTarget = circumferenceArray[i][j+1];
 			if(target > 0 && nextTarget > 0){
 				total += 0.1;
 			} 
@@ -640,13 +634,94 @@ function calculateTotalCircumference(array){
 
 	for(var i =0; i <= canvasWidth; i++){
 		for(var j = 0; j <= canvasLength; j++){
-			var target = array[j][i];
-			if(target > 0 && array[j+1][i] > 0){
+			var target = circumferenceArray[j][i];
+			if(target > 0 && circumferenceArray[j+1][i] > 0){
 				total += 0.1;
 			} 
 		}
 	}
 	return total;
+}
+
+function arrayClone(arr) {
+
+    var i, copy;
+
+    if( Array.isArray( arr ) ) {
+        copy = arr.slice( 0 );
+        for( i = 0; i < copy.length; i++ ) {
+            copy[ i ] = arrayClone( copy[ i ] );
+        }
+        return copy;
+    } else if( typeof arr === 'object' ) {
+        throw 'Cannot clone array containing an object!';
+    } else {
+        return arr;
+    }
+
+}
+
+function calculateTotalFoundation(){
+	var total = 0;
+	var store1 = 0;
+	var store2 = 0;
+	var storageArray = arrayClone(circumferenceArray);
+	var minusCount = 0;
+	
+	for(var i =0; i <= canvasWidth; i++){
+		for(var j = 0; j <= canvasLength; j++){
+			var target = storageArray[i][j];
+			var nextTarget = storageArray[i][j+1];
+			if(target === 100){
+				minusCount += 1;
+			}
+			
+			if(store1 === 0 && target > 0 && nextTarget !== 0){
+				store1 += 1;
+				total += 1;
+				storageArray[i][j] = 100; // to mark that its already counted
+			}
+			else if(store1 !== 0 && target > 0){
+				store1 += 1;
+				if(store1 % 30 === 0 && nextTarget !== 0){
+					total += 1;
+				}
+			}
+			else if(store1 !== 0 && nextTarget === 0){
+				store1 = 0;
+				total +=1;
+				storageArray[i][j] = 100;
+			}
+		}
+	}
+	
+	for(var i =0; i <= canvasWidth; i++){
+		for(var j = 0; j <= canvasLength; j++){
+			var target = storageArray[j][i];
+			var nextTarget = storageArray[j+1][i];
+			if(target === 100){
+				minusCount += 1;
+			}			
+			
+			if(store2 === 0 && target > 0 && nextTarget !== 0){
+				store2 += 1;
+				total += 1;
+				storageArray[j][i] = 100; // to mark that its already counted
+			}
+			else if(store2 !== 0 && target > 0){
+				store2 += 1;
+				if(store2 % 30 === 0 && nextTarget !== 0){
+					total += 1;
+				}
+			}
+			else if(store2 !== 0 && nextTarget === 0){
+				store2 = 0;
+				total +=1;
+				storageArray[j][i] = 100;
+			}
+		}
+	}
+	return total - minusCount;
 }
 
 
@@ -838,50 +913,4 @@ function paint(){
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/*function calculateTotalFoundation(){
-	var foundationObject = {};//to avoid double calculation
-	var totalFoundation = 0;
-	var signal = false;
-	for(var i = 0; i <= canvasWidth; i++){
-		var foundationArray = [];
-		for(var j = 0; j <= canvasLength; j++){
-			var testArray = [];
-			var target = parseInt(i*5) + "," + parseInt(j*5);
-			for(var k = 0; k < verticalWalls.length; k++){
-				if(verticalWalls[k].coordinate === target){
-					if(!(target in foundationObject)){
-						foundationArray.push(verticalWalls[k].y);
-						foundationObject[target] === null;
-						signal === true;
-					}
-				}
-			}
-			if(signal){
-				signal = false;
-			}
-			else {
-				foundationArray.push(0);
-			}
-			
-			//calculate the number of foundations needed per vertical lines.
-			var stored = 0;
-			for(var l = 0; l < foundationArray.length ; l++){
-				if(stored === 0 && foundationArray[l] !== 0){
-					stored +=1;
-					totalFoundation += 1;
-				}
-				else if(stored !== 0 && foundationArray[l] !== 0){
-					stored += 1;
-					if(stored % 30 === 0 && foundationArray[l] !== 0){
-						totalFoundation += 1;
-					}
-				}
-				else if(foundationArray[l] === 0){
-					stored = 0;
-				}
-			}
-		}
-		return foundationArray;
-	}
-	return totalFoundation;
-}*/
+
