@@ -12,6 +12,9 @@ var Horizontalwall = function(x,y,entity,xRect,yRect,width,length){
 	
 	//determine to get spliced or not
 	this.toDelete = false;
+	
+	//coordinate for calculating foundations
+	this.coordinate = parseInt(this.x) + "," + parseInt(this.y);
 }
 
 Horizontalwall.prototype.show = function(){
@@ -127,6 +130,7 @@ Horizontalwall.prototype.clicked = function(){
 		}			
 	}
 	this.end = this.x + 5;
+	this.coordinate = parseInt(this.x) + "," + parseInt(this.y);
 }
 
 Horizontalwall.prototype.erase = function(){

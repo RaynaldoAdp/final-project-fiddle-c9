@@ -633,7 +633,7 @@ function calculateTotalCircumference(array){
 			var target = array[i][j];
 			var nextTarget = array[i][j+1];
 			if(target > 0 && nextTarget > 0){
-				total +=5;
+				total += 0.1;
 			} 
 		}
 	}
@@ -642,7 +642,7 @@ function calculateTotalCircumference(array){
 		for(var j = 0; j <= canvasLength; j++){
 			var target = array[j][i];
 			if(target > 0 && array[j+1][i] > 0){
-				total +=5;
+				total += 0.1;
 			} 
 		}
 	}
@@ -652,8 +652,8 @@ function calculateTotalCircumference(array){
 
 function foundationCircumference(){
 	var total = 0;
-	total += horizontalWalls.length * 5;
-	total += verticalWalls.length * 5;
+	total += horizontalWalls.length * 0.1;
+	total += verticalWalls.length * 0.1;
 	var horizontalStorage = {};
 	var verticalStorage = {};
 	for(var i=0; i < horizontalWalls.length; i++){
@@ -663,7 +663,7 @@ function foundationCircumference(){
 		var coordinate = x +"," + y;
 
 		if(coordinate in horizontalStorage){
-			total -= 5;
+			total -= 0.1;
 		}
 		else{
 			horizontalStorage[coordinate] = null;
@@ -677,7 +677,7 @@ function foundationCircumference(){
 		var coordinate = x +"," + y;
 
 		if(coordinate in verticalStorage){
-			total -= 5;
+			total -= 0.1;
 		}
 		else{
 			verticalStorage[coordinate] = null;
@@ -711,3 +711,177 @@ function fondasi(){
 	var result = [iron, kerikil, sand, cement];
 	return result;
 }
+
+function rolag(){
+	var kelilingRolag = calculateTotalCircumference(circumferenceArray);
+	var height = 0.3;
+	var area = kelilingRolag * 0.3;
+	
+	var brick = area * 160; //number
+	var cement = area * 0.8; //sack
+	var sand = area * 0.1; //m^3
+	
+	return [brick, cement, sand];
+}
+
+function Sloof(){
+	var kelilingSloof = calculateTotalCircumference(circumferenceArray);
+	var height = 0.2;
+	var width = 0.15;
+	var volume = kelilingSloof * height * width;
+	
+	var cement = 299 * volume / 50; //sack
+	var sand = 799 * volume / 1600; //m^3 
+	var kerikil = 1017 * volume / 1900; //m^3
+	var besiSloof = kelilingSloof * 4 / 12;
+	var jumlahBegel = kelilingSloof / 0.15;
+	var panjang1Begel = 2 * kelilingSloof + 2 * width - 4 * 0.02 + 0.05;
+	var totalPanjangBesiBegel = jumlahBegel * panjang1Begel / 12;
+	var totalBesiSloof = besiSloof + totalPanjangBesiBegel; // pieces
+	
+	return [cement, sand, kerikil, totalBesiSloof];
+}
+
+function lantaiKerja(){
+	var area = 45; //get from the 
+	var height = 0.06;
+	var volume = area * height;
+	var cement = 299 * volume / 50; //sack
+	var sand = 799 * volume / 1600; //m^3 
+	var kerikil = 1017 * volume / 1900; //m^3
+}
+
+function column(){
+	var length = 0.25;
+	var height = 3;
+	var width = 0.2;
+	var numberOfColumns = 12;
+	var volume = numberOfColumns * length * height * width;
+	
+	var cement = 299 * volume / 50; //sack
+	var sand = 799 * volume / 1600; //m^3 
+	var kerikil = 1017 * volume / 1900; //m^3
+	
+	var besiColumn = 4 * numberOfColumns / 12 * height;
+	var jumlahBegel = height / 0.15 * numberOfColumns;
+	var panjang1Begel = 2 * length + 2 * width - 4 * 0.02 + 0.05;
+	var totalPanjangBesi = jumlahBegel * panjang1Begel / 12;
+	var totalBesi = besiColumn + totalPanjangBesi;
+}
+
+function dinding(){
+	var kelilingDinding = foundationCircumference();
+	var height = 3;
+	var area = height * kelilingDinding;
+	var tinggiTombakLayar = 1.5;
+	var totalLuasTombakLayar = 2 * tinggiTombakLayar * 7.5;//should be a variable input;
+	
+	var brick = 80 * area;
+	var cement = 0.4 * area;
+	var sand = 0.05 * area;
+	
+	return [brick, cement, sand]
+}
+
+function plaster(){
+	var kelilingDinding = foundationCircumference();
+	var height = 3;
+	var area = height * kelilingDinding;
+	
+	var cement = 8 * area / 50 ;
+	var pasirPasang = 0.036 * area; //m^3
+	
+	return [cement, pasirPasang];
+}
+
+function acian(){
+	var kelilingDinding = foundationCircumference();
+	var height = 3;
+	var area = height * kelilingDinding;
+	
+	var cement = 2.5 * area /50;
+	
+	return cement;
+}
+
+function ringbalok(){
+	var kelilingSloof = calculateTotalCircumference(circumferenceArray);
+	var height = 0.2;
+	var width = 0.15;
+	var volume = kelilingSloof * height * width;
+	
+	var cement = 299 * volume / 50; //sack
+	var sand = 799 * volume / 1600; //m^3 
+	var kerikil = 1017 * volume / 1900; //m^3
+	var besiSloof = kelilingSloof * 4 / 12;
+	var jumlahBegel = kelilingSloof / 0.15;
+	var panjang1Begel = 2 * kelilingSloof + 2 * width - 4 * 0.02 + 0.05;
+	var totalPanjangBesiBegel = jumlahBegel * panjang1Begel / 12;
+	var totalBesiSloof = besiSloof + totalPanjangBesiBegel; // pieces
+	
+	return [cement, sand, kerikil, totalBesiSloof];
+}
+
+function paint(){
+	var internalCircumference;
+	var externalCircumference;//internal and external different
+	var height = 3;
+	var internalArea;
+	var externalArea;
+	
+	var internalPaint = internalArea/12;
+	var externalPaint = exteranlArea/12;
+	
+	return[internalPaint, externalPaint];
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*function calculateTotalFoundation(){
+	var foundationObject = {};//to avoid double calculation
+	var totalFoundation = 0;
+	var signal = false;
+	for(var i = 0; i <= canvasWidth; i++){
+		var foundationArray = [];
+		for(var j = 0; j <= canvasLength; j++){
+			var testArray = [];
+			var target = parseInt(i*5) + "," + parseInt(j*5);
+			for(var k = 0; k < verticalWalls.length; k++){
+				if(verticalWalls[k].coordinate === target){
+					if(!(target in foundationObject)){
+						foundationArray.push(verticalWalls[k].y);
+						foundationObject[target] === null;
+						signal === true;
+					}
+				}
+			}
+			if(signal){
+				signal = false;
+			}
+			else {
+				foundationArray.push(0);
+			}
+			
+			//calculate the number of foundations needed per vertical lines.
+			var stored = 0;
+			for(var l = 0; l < foundationArray.length ; l++){
+				if(stored === 0 && foundationArray[l] !== 0){
+					stored +=1;
+					totalFoundation += 1;
+				}
+				else if(stored !== 0 && foundationArray[l] !== 0){
+					stored += 1;
+					if(stored % 30 === 0 && foundationArray[l] !== 0){
+						totalFoundation += 1;
+					}
+				}
+				else if(foundationArray[l] === 0){
+					stored = 0;
+				}
+			}
+		}
+		return foundationArray;
+	}
+	return totalFoundation;
+}*/

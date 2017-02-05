@@ -8,7 +8,12 @@ var Verticalwall = function(x, y, entity,xRect,yRect,width,length){
 	this.yRect = yRect;
 	this.width = width;
 	this.length = length;
+	
+	//to determine to get spliced or not
 	this.toDelete = false;
+	
+	//coordinate to calculate foundations
+	this.coordinate = parseInt(this.x) + "," + parseInt(this.y);
 }
 
 Verticalwall.prototype.show = function(){
@@ -124,6 +129,7 @@ Verticalwall.prototype.clicked = function(){
 		}			
 	}
 	this.end = this.y + 5;
+	this.coordinate = parseInt(this.x) + "," + parseInt(this.y);
 }
 
 Verticalwall.prototype.erase = function(){
