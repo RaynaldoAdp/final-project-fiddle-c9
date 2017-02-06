@@ -2,14 +2,14 @@
 var state = [];
 
 //input width and length of canvas
-var canvasWidth = 50;
+var canvasWidth = 65;
 var canvasLength = 65;
 
 //2d array to store circumference state
 var circumferenceArray = [];
-for(var y = 0; y <= canvasWidth*2 + 1; y++){
+for(var y = 0; y <= (canvasWidth*2 + 1); y++){
 	circumferenceArray[y] = [];
-	for (var z = 0; z <= canvasLength*2 + 1; z++){
+	for (var z = 0; z <= (canvasLength*2 + 1); z++){
 		circumferenceArray[y][z] = 0;
 	}
 }
@@ -622,8 +622,8 @@ function updateCircumferenceMinus(x,y,width,length){
 //to calculate total circumference
 function calculateTotalCircumference(){
 	var total = 0;
-	for(var i =0; i <= canvasWidth; i++){
-		for(var j = 0; j <= canvasLength; j++){
+	for(var i =0; i <= canvasWidth*2; i++){
+		for(var j = 0; j <= canvasLength*2; j++){
 			var target = circumferenceArray[i][j];
 			var nextTarget = circumferenceArray[i][j+1];
 			if(target > 0 && nextTarget > 0){
@@ -632,8 +632,8 @@ function calculateTotalCircumference(){
 		}
 	}
 
-	for(var i =0; i <= canvasWidth; i++){
-		for(var j = 0; j <= canvasLength; j++){
+	for(var i =0; i <= canvasWidth*2 + 1; i++){
+		for(var j = 0; j <= canvasLength*2 + 1; j++){
 			var target = circumferenceArray[j][i];
 			if(target > 0 && circumferenceArray[j+1][i] > 0){
 				total += 0.1;
@@ -663,61 +663,58 @@ function arrayClone(arr) {
 
 function calculateTotalFoundation(){
 	var total = 0;
-	var store1 = 0;
-	var store2 = 0;
 	var storageArray = arrayClone(circumferenceArray);
 	var minusCount = 0;
+	var count = 0;
 	
-	for(var i =0; i <= canvasWidth; i++){
-		for(var j = 0; j <= canvasLength; j++){
+	for(var i =0; i <= canvasWidth*2; i++){
+		var store1 = 0;
+		for(var j = 0; j <= canvasLength*2; j++){
 			var target = storageArray[i][j];
 			var nextTarget = storageArray[i][j+1];
-			if(target === 100){
-				minusCount += 1;
-			}
 			
-			if(store1 === 0 && target > 0 && nextTarget !== 0){
+			if(store1 === 0 && target !== 0 && nextTarget !== 0){
+				count+=1;
 				store1 += 1;
 				total += 1;
-				storageArray[i][j] = 100; // to mark that its already counted
+				minusCount+=1; // to mark that its already counted
 			}
-			else if(store1 !== 0 && target > 0){
-				store1 += 1;
+			else if(store1 !== 0 && target !== 0){
 				if(store1 % 30 === 0 && nextTarget !== 0){
 					total += 1;
 				}
+				store1 += 1;
 			}
 			else if(store1 !== 0 && nextTarget === 0){
+				count+=1;
 				store1 = 0;
 				total +=1;
-				storageArray[i][j] = 100;
+				minusCount+=1;
 			}
 		}
 	}
 	
-	for(var i =0; i <= canvasWidth; i++){
-		for(var j = 0; j <= canvasLength; j++){
+	for(var i =0; i <= canvasWidth*2; i++){
+		var store2 = 0;
+		for(var j = 0; j <= canvasLength*2; j++){
 			var target = storageArray[j][i];
 			var nextTarget = storageArray[j+1][i];
-			if(target === 100){
-				minusCount += 1;
-			}			
 			
-			if(store2 === 0 && target > 0 && nextTarget !== 0){
+			if(store2 === 0 && target !== 0 && nextTarget !== 0){
+				count+=1;
 				store2 += 1;
 				total += 1;
-				storageArray[j][i] = 100; // to mark that its already counted
 			}
-			else if(store2 !== 0 && target > 0){
-				store2 += 1;
+			else if(store2 !== 0 && target !== 0){
 				if(store2 % 30 === 0 && nextTarget !== 0){
 					total += 1;
 				}
+				store2 += 1;
 			}
 			else if(store2 !== 0 && nextTarget === 0){
+				count+=1;
 				store2 = 0;
 				total +=1;
-				storageArray[j][i] = 100;
 			}
 		}
 	}
