@@ -326,7 +326,8 @@ function changeAlpha(){
 function setup(){
 	var inputWidth = canvasWidth * 10 + 1;
 	var inputLength = canvasLength * 10 + 1;
-	createCanvas(inputWidth, inputLength);
+	var canvas = createCanvas(inputWidth, inputLength);
+	canvas.parent('sketch-holder');
 	background(255);
 	frameRate(60);
 }

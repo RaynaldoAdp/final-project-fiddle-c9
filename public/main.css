@@ -5,20 +5,55 @@
 	border: 0;
 }
 
+body{
+	background-color: white;
+}
+
+a{
+	/*font-family: Perpetua, Baskerville, "Big Caslon", "Palatino Linotype", Palatino, "URW Palladio L", "Nimbus Roman No9 L", serif;*/
+	font-family: "Brush Script MT", cursive;
+	display: inline-block;
+	float: right;
+	margin: 0 1.5vw 0 1.5vw;
+	color: rgb(128,128,128);
+	text-decoration: none;
+}
+
+.container{
+	margin: 1vh 1vw 1vh 1vw ;
+	height: 94vh;
+	width: 98vw;
+	background-image: linear-gradient(to bottom,
+					  rgba(0, 0, 0, 0.5),
+    			      rgba(0, 0, 0, 0.5)
+    				  ),     
+	url("https://scontent-sit4-1.xx.fbcdn.net/v/t1.0-9/15894781_1279572165442212_853539960692110603_n.jpg?oh=2d1f814434abc525a4e2d2e9d6ad121f&oe=590B432C");
+	background-size: cover;
+}
+
 .infoPanel{
 	position: absolute;
 	right: 0;
 	top: 0;
-	background-color: green;
 	height:50vh;
 	width: 30vw;
+}
+
+.infoPanel input{
+	display:block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.infoPanel label{
+	display: block;
+	text-align: center;
 }
 
 .menuPanel{
 	position: absolute;
 	right: 0;
 	bottom: 0;
-	background-color: red;
 	height:50vh;
 	width: 30vw;
 }
@@ -29,4 +64,5 @@ button{
 
 canvas{
 	margin: 5px;
+	left:10vw;
 }
