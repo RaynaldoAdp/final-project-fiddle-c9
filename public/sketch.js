@@ -7,10 +7,10 @@ var canvasLength = 65;
 
 //2d array to store circumference state
 var circumferenceArray = [];
-for(var y = 0; y <= (canvasWidth*2 + 1); y++){
+for(var y = -1; y <= (canvasWidth*2 + 2); y++){
 	circumferenceArray[y] = [];
-	for (var z = 0; z <= (canvasLength*2 + 1); z++){
-		circumferenceArray[y][z] = 0;
+	for (var z = -1; z <= (canvasLength*2 + 2); z++){
+		circumferenceArray[y][z] = {count: 0, entity: [], foundation: false};
 	}
 }
 
@@ -47,6 +47,9 @@ var objects = {  bedroom: [],
 //walls
 var horizontalWalls = [];
 var verticalWalls = [];
+
+//foundation
+var foundations = [];
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var infoTemplate = 	'<form id="dimensionInput">' +
@@ -221,7 +224,6 @@ function dimensionRemove(){
 		var width = parseInt($('#width').val());
 		var length = parseInt($('#length').val());
 		var area = width * length;
-		console.log(area);
 		if(menuState==="bedroom"){
 			bedroomArea = [];
 			objects.bedroom = [];
@@ -235,6 +237,8 @@ function dimensionRemove(){
 					horizontalWalls.splice(j,1);
 				}
 			}
+			
+			removeAllCircumferenceOfEntity(menuState);
 		}
 		else if(menuState === "bathroom"){
 			bedroomArea = [];
@@ -248,7 +252,9 @@ function dimensionRemove(){
 				if(horizontalWalls[j].entity === "bathroom"){
 					horizontalWalls.splice(j,1);
 				}
-			}			
+			}
+			
+			removeAllCircumferenceOfEntity(menuState);
 		}
 		else if(menuState==="garden"){
 			gardenArea.pop();
@@ -267,6 +273,8 @@ function dimensionRemove(){
 					horizontalWalls.splice(j,1);
 				}
 			}
+			
+			removeAllCircumferenceOfEntity(menuState);
 		}
 		else if(menuState==="livingroom"){
 			livingroomArea = [];
@@ -280,7 +288,9 @@ function dimensionRemove(){
 				if(horizontalWalls[j].entity === "livingroom"){
 					horizontalWalls.splice(j,1);
 				}
-			}			
+			}
+			
+			removeAllCircumferenceOfEntity(menuState);
 		}
 		else if(menuState === "garage"){
 			garageArea.pop();
@@ -361,6 +371,10 @@ function draw(){
 				verticalWalls[j].erase();
 			}
 		}
+	}
+	
+	for(var i = 0; i< foundations.length; i++){
+		foundations[i].show()
 	}
 
 }
@@ -586,16 +600,28 @@ function updateCircumferencePlus(x,y,width,length){
 	var endX = startX + width/5;
 	var endY = startY + length/5;
 	for(var i = startX; i <= endX - 1; i++ ){
-		circumferenceArray[i][startY] += 1;
+		circumferenceArray[i][startY].count += 1;
+		if(menuState ==="bedroom" || menuState === "bathroom" || menuState === "livingroom" || menuState === "kitchen"){
+			circumferenceArray[i][startY].entity.push(menuState);
+		}
 	}
 	for(var i = startX; i <= endX - 1; i++ ){
-		circumferenceArray[i][endY] += 1;
+		circumferenceArray[i][endY].count += 1;
+		if(menuState ==="bedroom" || menuState === "bathroom" || menuState === "livingroom" || menuState === "kitchen"){
+			circumferenceArray[i][endY].entity.push(menuState);
+		}
 	}
 	for(var i = startY + 1; i <= endY - 1; i++ ){
-		circumferenceArray[startX][i] += 1;
+		circumferenceArray[startX][i].count += 1;
+		if(menuState ==="bedroom" || menuState === "bathroom" || menuState === "livingroom" || menuState === "kitchen"){
+			circumferenceArray[startX][i].entity.push(menuState);
+		}
 	}
 	for(var i = startY; i <= endY; i++ ){
-		circumferenceArray[endX][i] += 1;
+		circumferenceArray[endX][i].count += 1;
+		if(menuState ==="bedroom" || menuState === "bathroom" || menuState === "livingroom" || menuState === "kitchen"){
+			circumferenceArray[endX][i].entity.push(menuState);
+		}		
 	}
 }
 
@@ -606,16 +632,62 @@ function updateCircumferenceMinus(x,y,width,length){
 	var endX = startX + width/5;
 	var endY = startY + length/5;
 	for(var i = startX; i <= endX - 1; i++ ){
-		circumferenceArray[i][startY] -= 1;
+		circumferenceArray[i][startY].count -= 1;
+		if(menuState ==="bedroom" || menuState === "bathroom" || menuState === "livingroom" || menuState === "kitchen"){
+			var entity = menuState;
+			for(var j = 0; j < circumferenceArray[i][startY].entity.length; j++){
+				if(entity === circumferenceArray[i][startY].entity[j]){
+					circumferenceArray[i][startY].entity.splice(j, 1);
+				}
+			}
+		}
 	}
 	for(var i = startX; i <= endX - 1; i++ ){
-		circumferenceArray[i][endY] -= 1;
+		circumferenceArray[i][endY].count -= 1;
+		if(menuState ==="bedroom" || menuState === "bathroom" || menuState === "livingroom" || menuState === "kitchen"){
+			var entity = menuState;
+			for(var j = 0; j <circumferenceArray[i][endY].entity.length; j++){
+				if(entity === circumferenceArray[i][endY].entity[j]){
+					circumferenceArray[i][endY].entity.splice(j, 1);
+				}
+			}
+		}
 	}
 	for(var i = startY + 1; i <= endY - 1; i++ ){
-		circumferenceArray[startX][i] -= 1;
+		circumferenceArray[startX][i].count -= 1;
+		if(menuState ==="bedroom" || menuState === "bathroom" || menuState === "livingroom" || menuState === "kitchen"){
+			var entity = menuState;
+			for(var j = 0; j < circumferenceArray[startX][i].entity.length; j++){
+				if(entity === circumferenceArray[startX][i].entity[j]){
+					circumferenceArray[startX][i].entity.splice(j, 1);
+				}
+			}
+		}
 	}
 	for(var i = startY; i <= endY; i++ ){
-		circumferenceArray[endX][i] -= 1;
+		circumferenceArray[endX][i].count -= 1;
+		if(menuState ==="bedroom" || menuState === "bathroom" || menuState === "livingroom" || menuState === "kitchen"){
+			var entity = menuState;
+			for(var j = 0; j < circumferenceArray[endX][i].entity.length; j++){
+				if(entity === circumferenceArray[endX][i].entity[j]){
+					circumferenceArray[endX][i].entity.splice(j, 1);
+				}
+			}
+		}
+	}
+}
+
+function removeAllCircumferenceOfEntity(entity){
+	for(var i = 0; i <= canvasWidth * 2; i++){
+		for(var j = 0; j <= canvasLength * 2; j++){
+			//if splicing while tracing through the same array, need to go backwards else there will be issues with index tracing.
+			for(var k = circumferenceArray[i][j].entity.length - 1; k >= 0; k--){ 
+				if(entity === circumferenceArray[i][j].entity[k]){
+					circumferenceArray[i][j].entity.splice(k, 1);
+					circumferenceArray[i][j].count -= 1;
+				}
+			}
+		}
 	}
 }
 
@@ -624,18 +696,19 @@ function calculateTotalCircumference(){
 	var total = 0;
 	for(var i =0; i <= canvasWidth*2; i++){
 		for(var j = 0; j <= canvasLength*2; j++){
-			var target = circumferenceArray[i][j];
-			var nextTarget = circumferenceArray[i][j+1];
+			var target = circumferenceArray[i][j].count;
+			var nextTarget = circumferenceArray[i][j+1].count;
 			if(target > 0 && nextTarget > 0){
 				total += 0.1;
 			} 
 		}
 	}
 
-	for(var i =0; i <= canvasWidth*2 + 1; i++){
-		for(var j = 0; j <= canvasLength*2 + 1; j++){
-			var target = circumferenceArray[j][i];
-			if(target > 0 && circumferenceArray[j+1][i] > 0){
+	for(var i =0; i <= canvasWidth*2; i++){
+		for(var j = 0; j <= canvasLength*2; j++){
+			var target = circumferenceArray[j][i].count;
+			var nextTarget = circumferenceArray[j+1][i].count;
+			if(target > 0 && nextTarget > 0){
 				total += 0.1;
 			} 
 		}
@@ -643,53 +716,151 @@ function calculateTotalCircumference(){
 	return total;
 }
 
-function arrayClone(arr) {
-
-    var i, copy;
-
-    if( Array.isArray( arr ) ) {
-        copy = arr.slice( 0 );
-        for( i = 0; i < copy.length; i++ ) {
-            copy[ i ] = arrayClone( copy[ i ] );
-        }
-        return copy;
-    } else if( typeof arr === 'object' ) {
-        throw 'Cannot clone array containing an object!';
-    } else {
-        return arr;
-    }
-
+function markFoundation(){
+	var count = 0;
+	for(var i =0; i <= canvasWidth*2; i++){
+		for(var j = 0; j <= canvasLength*2; j++){
+			var target = circumferenceArray[i][j];
+			var prevTarget = circumferenceArray[i][j-1];
+			var nextTarget = circumferenceArray[i][j+1];
+			var tangentTarget1 = circumferenceArray[i-1][j];
+			var tangentTarget2 = circumferenceArray[i+1][j];
+			
+			if(target.count !== 0 && nextTarget.count !== 0){
+				if(tangentTarget1.count !== 0 || tangentTarget2.count !== 0){
+					target.foundation = true;
+					foundations.push(new Foundation(i*5, j*5));
+				}
+			}
+			else if(target.count !== 0 && prevTarget.count !==0){
+				if(tangentTarget1.count !== 0 || tangentTarget2.count !== 0){
+					target.foundation = true;
+					foundations.push(new Foundation(i*5, j*5));
+				}
+			}
+		}
+	}
+	
+	for(var i =0; i <= canvasWidth*2; i++){
+		for(var j = 0; j <= canvasLength*2; j++){
+			var target = circumferenceArray[j][i];
+			var prevTarget = circumferenceArray[j-1][i];
+			var nextTarget = circumferenceArray[j+1][i];
+			var tangentTarget1 = circumferenceArray[j][i-1];
+			var tangentTarget2 = circumferenceArray[j][i+1];
+			
+			if(target.count !== 0 && nextTarget.count !== 0){
+				if(tangentTarget1.count !== 0 || tangentTarget2.count !== 0){
+					target.foundation = true;
+					foundations.push(new Foundation(j*5, i*5));
+				}
+				
+			}
+			else if(target.count !== 0 && prevTarget.count !==0){
+				if(tangentTarget1.count !== 0 || tangentTarget2.count !== 0){
+					target.foundation = true;
+					foundations.push(new Foundation(j*5, i*5));
+				}
+			}
+		}
+	}
+	
+	for(var i =0; i <= canvasWidth*2; i++){
+		var storage = 0;
+		for(var j = 0; j <= canvasLength*2; j++){
+			var target = circumferenceArray[i][j];
+			
+			if(target.count !== 0 && !target.foundation){
+				storage += 1;
+			}
+			else if(target.count === 0){
+				storage = 0;				
+			}
+			else if(target.foundation){
+				storage = 0;
+			}
+			
+			if(storage % 30 === 0 && target.count !== 0){
+				target.foundation = true;
+				foundations.push(new Foundation(i*5, j*5));
+			}
+										
+		}
+	}
+	
+	for(var i =0; i <= canvasWidth*2; i++){
+		var storage = 0;
+		for(var j = 0; j <= canvasLength*2; j++){
+			var target = circumferenceArray[j][i];
+			
+			if(target.count !== 0 && !target.foundation){
+				storage += 1;
+			}
+			else if(target.count === 0){
+				storage = 0;				
+			}
+			else if(target.foundation){
+				storage = 0;
+			}
+			
+			if(storage % 30 === 0 && target.count !== 0){
+				target.foundation = true;
+				foundations.push(new Foundation(j*5, i*5));
+			}
+										
+		}
+	}	
+	
+	for(var i =0; i <= canvasWidth*2; i++){
+		for(var j = 0; j <= canvasLength*2; j++){
+			if(circumferenceArray[i][j].foundation){
+				count += 1;
+			}
+		}
+	}
+	
+	return count;
 }
 
 function calculateTotalFoundation(){
 	var total = 0;
-	var storageArray = arrayClone(circumferenceArray);
 	var minusCount = 0;
-	var count = 0;
 	
 	for(var i =0; i <= canvasWidth*2; i++){
 		var store1 = 0;
 		for(var j = 0; j <= canvasLength*2; j++){
-			var target = storageArray[i][j];
-			var nextTarget = storageArray[i][j+1];
+			var target = circumferenceArray[i][j];
+			var nextTarget = circumferenceArray[i][j+1];
+			var tangentTarget1 = circumferenceArray[i-1][j];
+			var tangentTarget2 = circumferenceArray[i+1][j];
+			var tangentTarget3 = circumferenceArray[i-1][j-1];
+			var tangentTarget4 = circumferenceArray[i+1][j-1];
 			
-			if(store1 === 0 && target !== 0 && nextTarget !== 0){
-				count+=1;
+			if(store1 === 0 && target.count !== 0 && nextTarget.count !== 0){
 				store1 += 1;
 				total += 1;
-				minusCount+=1; // to mark that its already counted
+				if(tangentTarget1.count !== 0 && tangentTarget2.count !== 0){
+					console.log('12');
+				}
+				else{
+					minusCount+=1;
+				}
 			}
-			else if(store1 !== 0 && target !== 0){
-				if(store1 % 30 === 0 && nextTarget !== 0){
+			else if(store1 !== 0 && target.count !== 0){
+				if(store1 % 30 === 0 && nextTarget.count !== 0){
 					total += 1;
 				}
 				store1 += 1;
 			}
-			else if(store1 !== 0 && nextTarget === 0){
-				count+=1;
+			else if(store1 !== 0 && nextTarget.count === 0){
 				store1 = 0;
 				total +=1;
-				minusCount+=1;
+				if(tangentTarget3.count !== 0 && tangentTarget4.count !== 0){
+					console.log('34');
+				}
+				else{
+					minusCount+=1;
+				}
 			}
 		}
 	}
@@ -697,28 +868,29 @@ function calculateTotalFoundation(){
 	for(var i =0; i <= canvasWidth*2; i++){
 		var store2 = 0;
 		for(var j = 0; j <= canvasLength*2; j++){
-			var target = storageArray[j][i];
-			var nextTarget = storageArray[j+1][i];
+			var target = circumferenceArray[j][i];
+			var nextTarget = circumferenceArray[j+1][i];
+			var tangentTarget1 = circumferenceArray[j][i-1];
+			var tangentTarget2 = circumferenceArray[j][i+1];
 			
-			if(store2 === 0 && target !== 0 && nextTarget !== 0){
-				count+=1;
+			if(store2 === 0 && target.count !== 0 && nextTarget.count !== 0){
 				store2 += 1;
 				total += 1;
+
 			}
-			else if(store2 !== 0 && target !== 0){
-				if(store2 % 30 === 0 && nextTarget !== 0){
+			else if(store2 !== 0 && target.count !== 0){
+				if(store2 % 30 === 0 && nextTarget.count !== 0){
 					total += 1;
 				}
 				store2 += 1;
 			}
-			else if(store2 !== 0 && nextTarget === 0){
-				count+=1;
+			else if(store2 !== 0 && nextTarget.count === 0){
 				store2 = 0;
-				total +=1;
+				total += 1;
 			}
 		}
 	}
-	return total - minusCount;
+	return [total , minusCount];
 }
 
 
@@ -785,7 +957,7 @@ function fondasi(){
 }
 
 function rolag(){
-	var kelilingRolag = calculateTotalCircumference(circumferenceArray);
+	var kelilingRolag = rcumference(circumferenceArray);
 	var height = 0.3;
 	var area = kelilingRolag * 0.3;
 	
@@ -797,7 +969,7 @@ function rolag(){
 }
 
 function Sloof(){
-	var kelilingSloof = calculateTotalCircumference(circumferenceArray);
+	var kelilingSloof = rcumference(circumferenceArray);
 	var height = 0.2;
 	var width = 0.15;
 	var volume = kelilingSloof * height * width;
@@ -877,7 +1049,7 @@ function acian(){
 }
 
 function ringbalok(){
-	var kelilingSloof = calculateTotalCircumference(circumferenceArray);
+	var kelilingSloof = rcumference(circumferenceArray);
 	var height = 0.2;
 	var width = 0.15;
 	var volume = kelilingSloof * height * width;
