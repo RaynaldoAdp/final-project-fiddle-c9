@@ -26,27 +26,27 @@ Verticalwall.prototype.show = function(){
 
 Verticalwall.prototype.clicked = function(){
 	if(mouseX - this.xRect > 0 && mouseX - this.xRect < this.width && mouseY - this.yRect > 0 && mouseY - this.yRect < this.length){
-		if(mouseX - pmouseX > 2.5 && this.xRect + this.width + 5 <= 500){
+		if(mouseX - pmouseX > 2.5 && this.xRect + this.width + 5 <= 650){
 			this.x +=5;
 			this.xRect +=5
 		}
-		if(mouseX - pmouseX > 5 && this.xRect + this.width + 5 <= 500){
+		if(mouseX - pmouseX > 5 && this.xRect + this.width + 5 <= 650){
 			this.x +=5;
 			this.xRect +=5
 		}
-		if(mouseX - pmouseX > 7.5 && this.xRect + this.width + 5 <= 500){
+		if(mouseX - pmouseX > 7.5 && this.xRect + this.width + 5 <= 650){
 			this.x +=5;
 			this.xRect +=5
 		}
-		if(mouseX - pmouseX > 10 && this.xRect + this.width + 5 <= 500){
+		if(mouseX - pmouseX > 10 && this.xRect + this.width + 5 <= 650){
 			this.x +=5;
 			this.xRect +=5
 		}
-		if(mouseX - pmouseX > 12.5 && this.xRect + this.width + 5 <= 500){
+		if(mouseX - pmouseX > 12.5 && this.xRect + this.width + 5 <= 650){
 			this.x +=5;
 			this.xRect +=5
 		}
-		if(mouseX - pmouseX > 15 && this.xRect + this.width + 5 <= 500){
+		if(mouseX - pmouseX > 15 && this.xRect + this.width + 5 <= 650){
 			this.x +=5;
 			this.xRect +=5
 		}
@@ -133,7 +133,8 @@ Verticalwall.prototype.clicked = function(){
 }
 
 Verticalwall.prototype.erase = function(){
-	if(mouseX - this.x > -2 && mouseX -this.x < 2 && mouseY - this.y > 0 && mouseY - this.y < 5){
+	//mouseY +7 to cater for the cursor change to the eraser image
+	if(mouseX - this.x > -2 && mouseX -this.x < 2 && mouseY + 7 - this.y > 0 && mouseY + 7 - this.y < 5){
 		this.toDelete = true;
 	}
 }

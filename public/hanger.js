@@ -32,22 +32,22 @@ Hanger.prototype.condition = function(){
 
 Hanger.prototype.clicked = function(){
 	if(mouseX - this.x > 0 && mouseX - this.x < this.width && mouseY - this.y > 0 && mouseY - this.y < this.length){
-		if(mouseX - pmouseX > 2.5 && this.x + this.width + 5 <= 500){
+		if(mouseX - pmouseX > 2.5 && this.x + this.width + 5 <= 650){
 			this.x +=5;
 		}
-		if(mouseX - pmouseX > 5 && this.x + this.width + 5 <= 500){
+		if(mouseX - pmouseX > 5 && this.x + this.width + 5 <= 650){
 			this.x +=5;
 		}
-		if(mouseX - pmouseX > 7.5 && this.x + this.width + 5 <= 500){
+		if(mouseX - pmouseX > 7.5 && this.x + this.width + 5 <= 650){
 			this.x +=5;
 		}
-		if(mouseX - pmouseX > 10 && this.x + this.width + 5 <= 500){
+		if(mouseX - pmouseX > 10 && this.x + this.width + 5 <= 650){
 			this.x +=5;
 		}
-		if(mouseX - pmouseX > 12.5 && this.x + this.width + 5 <= 500){
+		if(mouseX - pmouseX > 12.5 && this.x + this.width + 5 <= 650){
 			this.x +=5;
 		}
-		if(mouseX - pmouseX > 15 && this.x + this.width + 5 <= 500){
+		if(mouseX - pmouseX > 15 && this.x + this.width + 5 <= 650){
 			this.x +=5;
 		}
 

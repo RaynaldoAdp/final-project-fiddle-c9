@@ -72,6 +72,9 @@ var menuTemplate = '<button class="room" id="bedroom" data-toggle="tooltip" titl
 				   '<button class="room" id="carpark" data-toggle="tooltip" title="Generate Carpark" data-placement="auto"></button>' +
 				   '<button class="room" id="terrace" data-toggle="tooltip" title=Generate Terrace" data-placement="left"></button>' +
 				   '<button class="room" id="hanger" data-toggle="tooltip" title="Generate Hanger" data-placement="auto"></button>';
+				   
+var eraserTemplate ='<h2 class="js-menuState">ERASER MODE</h2><br><br><br>' +
+					'<img src="/images/icons/eraser-big.png" />';
 
 
 $(document).ready(function(event){
@@ -160,13 +163,16 @@ $(document).ready(function(event){
 		dimensionSubmit();
 		dimensionRemove();
 		eraser();
+		cursor(ARROW);
 	})
 });
 
 function eraser(){
 	$('#eraser').click(function(event){
-		cursor(CROSS);
+		cursor("/images/icons/eraser1.png");
 		menuState = "eraser";
+		var element = $(eraserTemplate);
+		$('.infoPanel').html(element);
 	})
 };
 
@@ -334,7 +340,10 @@ function setup(){
 	frameRate(60);
 }
 
-
+function mouseClicked(){
+	console.log(mouseX);
+	console.log(mouseY);
+}
 
 //drawing the objects
 function draw(){
@@ -380,12 +389,12 @@ function draw(){
 				verticalWalls[j].erase();
 			}
 		}
+		cursor("/images/icons/eraser1.png");
 	}
 	
 	for(var i = 0; i< foundations.length; i++){
 		foundations[i].show()
 	}
-
 }
 
 //dragging of mouse to move the object in canvas
