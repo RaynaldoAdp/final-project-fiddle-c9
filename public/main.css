@@ -88,6 +88,11 @@ body{
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */	
 }
 
+.menuPanel h2{
+	text-align: center;
+	font-family: Avant Garde,Avantgarde,Century Gothic,CenturyGothic,AppleGothic,sans-serif; 
+}
+
 button{
 	display: inline-block;
 	margin: 10px;
@@ -175,4 +180,24 @@ button{
 	height: 50px;
 	position: absolute;
 	bottom: 0;	
+}
+
+#clearCanvas{
+	background: url("/images/icons/clear.png");
+	background-size: cover;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	left: 80px;
+	bottom: 0;
+}
+
+#checklist{
+	background: url("/images/icons/checklist.png");
+	background-size: cover;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	bottom: 0;	
+	left: 140px;
 }

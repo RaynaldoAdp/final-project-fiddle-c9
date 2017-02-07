@@ -63,7 +63,8 @@ var infoTemplate = 	'<h2 class="js-menuState"></h2><br><br>' +
 					'<button id="dimensionRemove" data-toggle="tooltip" title="Remove all dimensions of this mode" data-placement="auto""></button>' +
 					'<button id="eraser" data-toggle="tooltip" title="Erase foundations of the house" data-placement="auto""></button>';
 
-var menuTemplate = '<button class="room" id="bedroom" data-toggle="tooltip" title="Generate Bedroom" data-placement="auto"></button>' +
+var menuTemplate = '<h2>MENU</h2><br>' +
+				   '<button class="room" id="bedroom" data-toggle="tooltip" title="Generate Bedroom" data-placement="auto"></button>' +
 				   '<button class="room" id="bathroom" data-toggle="tooltip" title="Generate Bathroom" data-placement="auto"></button>' +
 				   '<button class="room" id="garden" data-toggle="tooltip" title="Generate Garden" data-placement="auto"></button>' +
 				   '<button class="room" id="kitchen" data-toggle="tooltip" title="Generate Kitchen" data-placement="auto"></button>' +
@@ -71,7 +72,9 @@ var menuTemplate = '<button class="room" id="bedroom" data-toggle="tooltip" titl
 				   '<button class="room" id="garage" data-toggle="tooltip" title="Generate Garage" data-placement="auto"></button>' + 
 				   '<button class="room" id="carpark" data-toggle="tooltip" title="Generate Carpark" data-placement="auto"></button>' +
 				   '<button class="room" id="terrace" data-toggle="tooltip" title=Generate Terrace" data-placement="left"></button>' +
-				   '<button class="room" id="hanger" data-toggle="tooltip" title="Generate Hanger" data-placement="auto"></button>';
+				   '<button class="room" id="hanger" data-toggle="tooltip" title="Generate Hanger" data-placement="auto"></button>' +
+   				   '<button class="room" id="clearCanvas" data-toggle="tooltip" title="Clear canvas" data-placement="auto"></button>' +
+				   '<button class="room" id="checklist" data-toggle="tooltip" title="Click when you are ready to submit!" data-placement="auto"></button>';
 				   
 var eraserTemplate ='<h2 class="js-menuState">ERASER MODE</h2><br><br><br>' +
 					'<img src="/images/icons/eraser-big.png" />';
