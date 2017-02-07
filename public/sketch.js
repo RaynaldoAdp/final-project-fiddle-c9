@@ -52,30 +52,30 @@ var verticalWalls = [];
 var foundations = [];
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-var infoTemplate = 	'<form id="dimensionInput">' +
-						'<label for="width"> Width </label>' +
-						'<input type="text" name="width" id="width" required />' +
-						'<label for="length"> length </label>' +
-						'<input type="text" name="length" id="length" required />' +
-						'<input type= "submit" />' +
+var infoTemplate = 	'<h2 class="js-menuState"></h2><br><br>' +
+					'<form id="dimensionInput">' +
+						'<label for="width"> Width(M) </label>' +
+						'<input type="text" name="width" id="width" required /><br>' +
+						'<label for="length"> length(M) </label>' +
+						'<input type="text" name="length" id="length" required /><br>' +
+						'<input type= "submit" value="Generate" />' +
 					'</form>' +
-					'<button id="dimensionRemove">dimensionRemove</button>' +
-					'<button id="eraser">eraser</button>';
+					'<button id="dimensionRemove" data-toggle="tooltip" title="Remove all dimensions of this mode" data-placement="auto""></button>' +
+					'<button id="eraser" data-toggle="tooltip" title="Erase foundations of the house" data-placement="auto""></button>';
 
-var menuTemplate = '<button class="room" id="bedroom">Bedroom</button>' +
-				   '<button class="room" id="bathroom">Bathroom</button>' +
-				   '<button class="room" id="garden">Garden</button>' +
-				   '<button class="room" id="kitchen">Kitchen</button>' +
-				   '<button class="room" id="livingroom">Living Room</button>' +
-				   '<button class="room" id="garage">Garage</button>' + 
-				   '<button class="room" id="carpark">Carpark</button>' +
-				   '<button class="room" id="terrace">Terrace</button>' +
-				   '<button class="room" id="hanger">Hanger</button>';
+var menuTemplate = '<button class="room" id="bedroom" data-toggle="tooltip" title="Generate Bedroom" data-placement="auto"></button>' +
+				   '<button class="room" id="bathroom" data-toggle="tooltip" title="Generate Bathroom" data-placement="auto"></button>' +
+				   '<button class="room" id="garden" data-toggle="tooltip" title="Generate Garden" data-placement="auto"></button>' +
+				   '<button class="room" id="kitchen" data-toggle="tooltip" title="Generate Kitchen" data-placement="auto"></button>' +
+				   '<button class="room" id="livingroom" data-toggle="tooltip" title="Generate Living Room" data-placement="auto"></button>' +
+				   '<button class="room" id="garage" data-toggle="tooltip" title="Generate Garage" data-placement="auto"></button>' + 
+				   '<button class="room" id="carpark" data-toggle="tooltip" title="Generate Carpark" data-placement="auto"></button>' +
+				   '<button class="room" id="terrace" data-toggle="tooltip" title=Generate Terrace" data-placement="left"></button>' +
+				   '<button class="room" id="hanger" data-toggle="tooltip" title="Generate Hanger" data-placement="auto"></button>';
 
 
 $(document).ready(function(event){
 	$('.menuPanel').append(menuTemplate);
-
 	$('.room').click(function(){
 		changeAlpha();
 	})
@@ -86,7 +86,6 @@ $(document).ready(function(event){
 		}
 
 		menuState = 'bedroom';
-		$('.infoPanel').html(infoTemplate);
 	})
 
 	$('#bathroom').click(function(){
@@ -95,7 +94,6 @@ $(document).ready(function(event){
 		}
 
 		menuState = 'bathroom';
-		$('.infoPanel').html(infoTemplate);
 	})
 
 	$('#garden').click(function(){
@@ -104,7 +102,6 @@ $(document).ready(function(event){
 		}
 
 		menuState = 'garden';
-		$('.infoPanel').html(infoTemplate);
 	})
 
 	$('#kitchen').click(function(){
@@ -113,7 +110,6 @@ $(document).ready(function(event){
 		}
 
 		menuState = 'kitchen';
-		$('.infoPanel').html(infoTemplate);
 	})
 
 	$('#livingroom').click(function(){
@@ -122,7 +118,6 @@ $(document).ready(function(event){
 		}
 
 		menuState = 'livingroom';
-		$('.infoPanel').html(infoTemplate);
 	})
 
 	$('#garage').click(function(){
@@ -131,7 +126,6 @@ $(document).ready(function(event){
 		}
 
 		menuState = 'garage';
-		$('.infoPanel').html(infoTemplate);
 	})
 
 	$('#carpark').click(function(){
@@ -140,7 +134,6 @@ $(document).ready(function(event){
 		}
 
 		menuState = 'carpark';
-		$('.infoPanel').html(infoTemplate);
 	})
 
 	$('#terrace').click(function(){
@@ -149,7 +142,6 @@ $(document).ready(function(event){
 		}
 
 		menuState = 'terrace';
-		$('.infoPanel').html(infoTemplate);
 	})
 
 	$('#hanger').click(function(){
@@ -158,10 +150,13 @@ $(document).ready(function(event){
 		}
 
 		menuState = 'hanger';
-		$('.infoPanel').html(infoTemplate);
 	})
 
 	$('.room').click(function(){
+		var name = menuState.toUpperCase();
+		var element = $(infoTemplate);
+		$('.infoPanel').html(element);
+		$('.infoPanel').find('.js-menuState').html(name +" MODE");
 		dimensionSubmit();
 		dimensionRemove();
 		eraser();
@@ -323,17 +318,30 @@ function changeAlpha(){
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //setting up the canvas
+function centerCanvas(canvas) {
+  var x = 150;
+  var y = (windowHeight - height) / 2;
+  canvas.position(x, y);
+}
+
 function setup(){
 	var inputWidth = canvasWidth * 10 + 1;
 	var inputLength = canvasLength * 10 + 1;
 	var canvas = createCanvas(inputWidth, inputLength);
 	canvas.parent('sketch-holder');
+	centerCanvas(canvas);
 	background(255);
 	frameRate(60);
 }
 
+
+
 //drawing the objects
 function draw(){
+	
+	function windowResized() {
+		centerCanvas();
+	}
 
 	for(var i = 0; i< gridArray.length; i++){
 		gridArray[i].show();

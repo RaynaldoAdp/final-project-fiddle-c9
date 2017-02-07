@@ -6,63 +6,173 @@
 }
 
 body{
-	background-color: white;
-}
 
-a{
-	/*font-family: Perpetua, Baskerville, "Big Caslon", "Palatino Linotype", Palatino, "URW Palladio L", "Nimbus Roman No9 L", serif;*/
-	font-family: "Brush Script MT", cursive;
-	display: inline-block;
-	float: right;
-	margin: 0 1.5vw 0 1.5vw;
-	color: rgb(128,128,128);
-	text-decoration: none;
 }
 
 .container{
-	margin: 1vh 1vw 1vh 1vw ;
-	height: 94vh;
-	width: 98vw;
-	background-image: linear-gradient(to bottom,
-					  rgba(0, 0, 0, 0.5),
-    			      rgba(0, 0, 0, 0.5)
-    				  ),     
-	url("https://scontent-sit4-1.xx.fbcdn.net/v/t1.0-9/15894781_1279572165442212_853539960692110603_n.jpg?oh=2d1f814434abc525a4e2d2e9d6ad121f&oe=590B432C");
-	background-size: cover;
+	min-height: 100vh;
+	min-width: 100vw;/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b2e1ff+0,66b6fc+100;Blue+3D+%236 */
+	background: rgb(149,149,149); /* Old browsers */
+	background: -moz-linear-gradient(45deg,  rgba(149,149,149,1) 0%, rgba(13,13,13,1) 46%, rgba(1,1,1,1) 50%, rgba(10,10,10,1) 53%, rgba(78,78,78,1) 76%, rgba(56,56,56,1) 87%, rgba(27,27,27,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(45deg,  rgba(149,149,149,1) 0%,rgba(13,13,13,1) 46%,rgba(1,1,1,1) 50%,rgba(10,10,10,1) 53%,rgba(78,78,78,1) 76%,rgba(56,56,56,1) 87%,rgba(27,27,27,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(45deg,  rgba(149,149,149,1) 0%,rgba(13,13,13,1) 46%,rgba(1,1,1,1) 50%,rgba(10,10,10,1) 53%,rgba(78,78,78,1) 76%,rgba(56,56,56,1) 87%,rgba(27,27,27,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#959595', endColorstr='#1b1b1b',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
+
+.infoPanelContainer{
+	position:absolute;
+	right: 0;
+	top: 0;
+	height: 50%;
+	width: 300px;
+	background: rgb(243,226,199);
+	background: -moz-linear-gradient(top, rgba(243,226,199,1) 0%, rgba(193,158,103,1) 50%, rgba(182,141,76,1) 51%, rgba(233,212,179,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(243,226,199,1) 0%,rgba(193,158,103,1) 50%,rgba(182,141,76,1) 51%,rgba(233,212,179,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(243,226,199,1) 0%,rgba(193,158,103,1) 50%,rgba(182,141,76,1) 51%,rgba(233,212,179,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3e2c7', endColorstr='#e9d4b3',GradientType=0 ); /* IE6-9 */
 }
 
 .infoPanel{
+	text-align: center;
 	position: absolute;
-	right: 0;
-	top: 0;
-	height:50vh;
-	width: 30vw;
+	right: 10px;
+	top: 2.5%;
+	height: 95%;
+	width: 280px;
+	background: rgb(255,255,255); /* Old browsers */
+	background: -moz-linear-gradient(-45deg,  rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(-45deg,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(135deg,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
 .infoPanel input{
 	display:block;
 	margin-left: auto;
 	margin-right: auto;
+	text-align: center;
+}
+
+.infoPanel h2, .infoPanel label, .infoPanel input, .infoPanel button {
+	font-family: Avant Garde,Avantgarde,Century Gothic,CenturyGothic,AppleGothic,sans-serif; 
 }
 
 .infoPanel label{
-	display: block;
-	text-align: center;
+	margin: 5px;
+}
+
+.menuPanelContainer{
+	position:absolute;
+	right: 0;
+	top: 50%;
+	height: 50%;
+	width: 300px;
+	background: rgb(243,226,199); /* Old browsers */
+	background: -moz-linear-gradient(top, rgba(243,226,199,1) 0%, rgba(193,158,103,1) 50%, rgba(182,141,76,1) 51%, rgba(233,212,179,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, rgba(243,226,199,1) 0%,rgba(193,158,103,1) 50%,rgba(182,141,76,1) 51%,rgba(233,212,179,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, rgba(243,226,199,1) 0%,rgba(193,158,103,1) 50%,rgba(182,141,76,1) 51%,rgba(233,212,179,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f3e2c7', endColorstr='#e9d4b3',GradientType=0 ); /* IE6-9 */	
 }
 
 .menuPanel{
 	position: absolute;
-	right: 0;
-	bottom: 0;
-	height:50vh;
-	width: 30vw;
+	right: 10px;
+	top: 2.5%;
+	height: 95%;
+	width: 280px;
+	background: rgb(255,255,255); /* Old browsers */
+	background: -moz-linear-gradient(-45deg,  rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(-45deg,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(135deg,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */	
 }
 
 button{
-	display:block;
+	display: inline-block;
+	margin: 10px;
 }
 
-canvas{
-	margin: 5px;
-	left:10vw;
+/*button styling*/
+
+#bedroom{
+	background: url("/images/icons/bed.png");
+	background-size: cover;
+	width: 50px;
+	height: 50px;
+}
+
+#bathroom{
+	background: url("/images/icons/bathtub.png");
+	background-size: cover;
+	width: 50px;
+	height: 50px;
+}
+
+#garden{
+	background: url("/images/icons/sprout.png");
+	background-size: cover;
+	width: 50px;
+	height: 50px;
+}
+
+#livingroom{
+	background: url("/images/icons/livingroom.png");
+	background-size: cover;
+	width: 50px;
+	height: 50px;
+}
+
+#kitchen{
+	background: url("/images/icons/cooking.png");
+	background-size: cover;
+	width: 50px;
+	height: 50px;
+}
+
+#garage{
+	background: url("/images/icons/garage-1.png");
+	background-size: cover;
+	width: 50px;
+	height: 50px;
+}
+
+#carpark{
+	background: url("/images/icons/garage.png");
+	background-size: cover;
+	width: 50px;
+	height: 50px;
+}
+
+#terrace{
+	background: url("/images/icons/parquet.png");
+	background-size: cover;
+	width: 50px;
+	height: 50px;
+}
+
+#hanger{
+	background: url("/images/icons/carpet-hanging-of-a-rope.png");
+	background-size: cover;
+	width: 50px;
+	height: 50px;
+}
+
+#eraser{
+	background: url("/images/icons/erase-text.png");
+	background-size: cover;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	left: 80px;
+	bottom: 0;
+}
+
+#dimensionRemove{
+	background: url("/images/icons/dustbin.png");
+	background-size: cover;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	bottom: 0;	
 }
