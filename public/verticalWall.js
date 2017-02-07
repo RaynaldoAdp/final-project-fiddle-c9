@@ -134,7 +134,7 @@ Verticalwall.prototype.clicked = function(){
 
 Verticalwall.prototype.erase = function(){
 	//mouseY +7 to cater for the cursor change to the eraser image
-	if(mouseX - this.x > -2 && mouseX -this.x < 2 && mouseY + 7 - this.y > 0 && mouseY + 7 - this.y < 5){
+	if(mouseX - this.x > -5 && mouseX -this.x < 5 && mouseY + 7 - this.y > -5 && mouseY + 7 - this.y < 5){
 		this.toDelete = true;
 	}
 }

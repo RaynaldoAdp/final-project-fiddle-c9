@@ -340,11 +340,6 @@ function setup(){
 	frameRate(60);
 }
 
-function mouseClicked(){
-	console.log(mouseX);
-	console.log(mouseY);
-}
-
 //drawing the objects
 function draw(){
 	

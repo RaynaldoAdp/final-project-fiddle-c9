@@ -135,7 +135,7 @@ Horizontalwall.prototype.clicked = function(){
 
 Horizontalwall.prototype.erase = function(){
 	//mouseY +7 to cater for the cursor change to the eraser image
-	if(mouseY + 7 - this.y > -2 && mouseY + 7 -this.y < 2 && mouseX - this.x > 0 && mouseX - this.x < 10){
+	if(mouseY + 7 - this.y > -5 && mouseY + 7 -this.y < 5 && mouseX - this.x < 5 && mouseX - this.x > -5){
 		this.toDelete = true;
 	}
 }
