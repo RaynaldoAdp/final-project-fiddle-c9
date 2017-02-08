@@ -51,6 +51,48 @@ var verticalWalls = [];
 //foundation
 var foundations = [];
 
+function clearCanvas(){
+	circumferenceArray = [];
+	for(var y = -1; y <= (canvasWidth*2 + 2); y++){
+		circumferenceArray[y] = [];
+		for (var z = -1; z <= (canvasLength*2 + 2); z++){
+			circumferenceArray[y][z] = {count: 0, entity: [], foundation: false};
+		}
+	}
+	
+	bedroomArea = [];
+	bathroomArea = [];
+	gardenArea = [];
+	kitchenArea = [];
+	livingroomArea = [];
+	garageArea = [];
+	carparkArea = [];
+	terraceArea = [];
+	hangerArea = [];
+	
+	objects = {  bedroom: [],
+				 bathroom: [],
+				 garden: [],
+				 kitchen: [],
+				 livingroom: [],
+				 garage: [],
+				 carpark: [],
+				 terrace: [],
+				 hanger: []
+			  };
+			  
+	horizontalWalls = [];
+	verticalWalls = [];	
+	
+	foundations = [];
+}
+
+function reset(){
+	$("#clearCanvas").click(function(event){
+		clearCanvas();
+	})
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 var infoTemplate = 	'<h2 class="js-menuState"></h2><br><br>' +
 					'<form id="dimensionInput">' +
@@ -82,6 +124,8 @@ var eraserTemplate ='<h2 class="js-menuState">ERASER MODE</h2><br><br><br>' +
 
 $(document).ready(function(event){
 	$('.menuPanel').append(menuTemplate);
+	reset();
+	
 	$('.room').click(function(){
 		changeAlpha();
 	})
@@ -394,6 +438,7 @@ function draw(){
 		foundations[i].show()
 	}
 }
+
 
 //dragging of mouse to move the object in canvas
 function mouseDragged() {
